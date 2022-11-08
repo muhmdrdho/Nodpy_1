@@ -11,7 +11,7 @@ sidebar_setting = st.markdown(
                         flex-shrink: 0;
                         height: calc(100vh - 2px);
                         top: 0px;
-                        width: 15rem;
+                        width: 18rem;
                         z-index: 999991;
                         margin-left: 0px;
                         }
