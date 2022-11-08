@@ -1,3 +1,3 @@
-from app.layout.dashboard import *
+from app.layout.dashboard import dashboard_set
 
-st.write("this your app")
+app_dashboard = dashboard_set
