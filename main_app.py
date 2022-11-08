@@ -7,7 +7,7 @@ sidebar_setting = st.markdown(
         <style>
         [data-testid="stSidebar"][aria-expanded="false"] > div:first-child {
             min-width: 100px;
-            max-width: 300px;
+            max-width: 200px;
         }
     
         </style>
