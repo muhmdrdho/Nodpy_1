@@ -5,10 +5,16 @@ st.set_page_config(layout='wide', initial_sidebar_state="expanded")
 sidebar_setting = st.markdown(
         """
         <style>
-        [data-testid="stSidebar"][aria-expanded="false"] > div:first-child {
-            width: 15rem;
-        }
-    
+            .css-1fkbmr9 {
+                        background-color: rgb(246, 246, 246);
+                        background-attachment: fixed;
+                        flex-shrink: 0;
+                        height: calc(100vh - 2px);
+                        top: 0px;
+                        width: 15rem;
+                        z-index: 999991;
+                        margin-left: 0px;
+                        }
         </style>
         """,
         unsafe_allow_html=True,
