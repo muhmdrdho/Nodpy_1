@@ -9,3 +9,4 @@ streamlit-folium==0.6.15
 streamlit-option-menu==0.3.2
 mpld3==0.5.8
 streamlit-aggrid==0.3.3
+hydralit-components==1.0.10
