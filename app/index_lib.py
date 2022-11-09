@@ -11,8 +11,7 @@ import folium
 from st_aggrid import AgGrid
 from streamlit_folium import folium_static
 from streamlit_option_menu import option_menu
-from folium.plugins import StripePattern
-from folium import plugins
 import branca
 import branca.colormap as cm
 from branca.colormap import LinearColormap
+import hydralit_components as hc

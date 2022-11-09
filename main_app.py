@@ -23,12 +23,15 @@ sidebar_setting = st.markdown(
 st.sidebar.image('app/assets/logo/Nodpy2.png')
 
     #sidebar main menu
+option_data = [
+   {'icon': "bi bi-hand-thumbs-up", 'label':"Agree"},
+   {'icon':"fa fa-question-circle",'label':"Unsure"},
+   {'icon': "bi bi-hand-thumbs-down", 'label':"Disagree"},
+]
+over_theme = {'txc_inactive': 'white','menu_background':'purple','txc_active':'yellow','option_active':'blue'}
+font_fmt = {'font-class':'h2','font-size':'150%'}
 with st.sidebar:
-    selected = option_menu("Main Menu",["Preacquisition", "Interpretation", "About"],
-                                icons=["file","compass","megaphone"],
-                                menu_icon="cast",
-                                default_index=0
-                                )
+    op2 = hc.option_bar(option_definition=option_data,title='Feedback Response',key='PrimaryOption',override_theme=over_theme,font_styling=font_fmt,horizontal_orientation=False)
 hide_st_style = """
                 <style>
                 #MainMenu {visibility: hidden;}
