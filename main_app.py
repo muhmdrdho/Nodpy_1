@@ -6,7 +6,7 @@ sidebar_setting = st.markdown(
         """
         <style>
             .css-1fkbmr9 {
-                        background-color: rgb(255, 255, 255);
+                        background-color: rgb(239, 245, 245);
                         background-attachment: fixed;
                         flex-shrink: 0;
                         height: calc(100vh - 2px);
