@@ -41,7 +41,7 @@ with st.sidebar:
 
 if selected=="Preacquisition":
     menu_data = [{'label':"Preacquisition"}]
-    menu_id = hc.nav_bar(mendu_definition=menu_data)
+    menu_id = hc.nav_bar(menu_definition=menu_data)
 
 
 
