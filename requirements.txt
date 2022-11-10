@@ -10,4 +10,4 @@ streamlit-option-menu==0.3.2
 mpld3==0.5.8
 streamlit-aggrid==0.3.3
 hydralit-components==1.0.10
-st_card_component_2==2.0.0.1
+st_card_component_2==0.0.1
