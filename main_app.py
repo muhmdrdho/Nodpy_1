@@ -6,7 +6,7 @@ sidebar_setting = st.markdown(
         """
         <style>
             .css-1fkbmr9 {
-                        background-color: rgb(246, 246, 246);
+                        background-color: rgb(255, 255, 255);
                         background-attachment: fixed;
                         flex-shrink: 0;
                         height: calc(100vh - 2px);
@@ -14,6 +14,16 @@ sidebar_setting = st.markdown(
                         width: 18rem;
                         z-index: 999991;
                         margin-left: 0px;
+                        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+sidebar_expand_hide = st.markdown(
+        """
+        <style>
+            .css-1o0o1ai {
+                        visibility: hidden;
                         }
         </style>
         """,
