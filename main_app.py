@@ -6,7 +6,7 @@ sidebar_setting = st.markdown(
         """
         <style>
             .css-1fkbmr9 {
-                        background-color: rgb(255, 255, 255);
+                        background-color: rgb(246, 246, 246);
                         background-attachment: fixed;
                         flex-shrink: 0;
                         height: calc(100vh - 2px);
@@ -19,16 +19,17 @@ sidebar_setting = st.markdown(
         """,
         unsafe_allow_html=True,
     )
-sidebar_removed = st.markdown(
-        """
-        <style>
-            .css-1o0o1ai {
-                        visibility: hidden;
-                        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    #sidebar logo
+st.sidebar.image('app/assets/logo/Nodpy2.png')
+
+    #sidebar main menu
+with st.sidebar:
+    selected = option_menu("Main Menu",["Preacquisition", "Interpretation", "About"],
+                            icons=["file","compass","megaphone"],
+                            menu_icon="cast",
+                            default_index=0
+                            )
+
 hide_st_style = """
                 <style>
                 #MainMenu {visibility: hidden;}
@@ -37,22 +38,6 @@ hide_st_style = """
                 </style>
                 """
 st.markdown(hide_st_style, unsafe_allow_html=True)
-    #sidebar logo
-
-
-    #sidebar main menu
-st.sidebar.image('app/assets/logo/Nodpy2.png')
-with st.sidebar:
-    selected = option_menu("Main Menu",["Preacquisition", "Interpretation", "About"],
-                            icons=["file","compass","megaphone"],
-                            menu_icon="cast",
-                            default_index=0
-                            )
-
-
-
-
-
 footer="""
 
         <style> your css code put here</style>
