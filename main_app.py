@@ -75,7 +75,7 @@ def get_color(feature):
         return color_scale(value)
 
 #subheader
-st.subheader("test")
+st.header("Preacquisition")
 st.markdown("---")
 
 #Map Processing
