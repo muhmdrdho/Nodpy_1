@@ -38,6 +38,19 @@ hide_st_style = """
                 </style>
                 """
 st.markdown(hide_st_style, unsafe_allow_html=True)
+
+
+menu_data = [
+    {'label':"Left End"},
+    {'label':"Book"},
+    {'label':"Component"},
+    {'label':"Dashboard"},
+    {'label':"Right End"},
+]
+
+menu_id = hc.nav_bar(menu_definition=menu_data)
+
+st.info(f"{menu_id=}")
 footer="""
 
         <style> your css code put here</style>
