@@ -76,6 +76,12 @@ def get_color(feature):
         return '#8c8c8c' # MISSING -> gray
     else:
         return color_scale(value)
+
+#subheader
+st.subheader("test")
+st.markdown("---")
+
+#Map Processing
 pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     
     #base tile map
@@ -157,14 +163,13 @@ if upload_pre is not None :
     
  
         
-see_the_map = folium_static(pre_map)  
+  
 #columns
 cols = st.columns([4,1])
 if selected=="Preacquisition":
     with cols[0]:
-        st.subheader("test")
-        st.markdown("---")
+        
         card_component(title="Digital Map",
                         subtitle="See what you want to",
-                        body=see_the_map
+                        body=folium_static(pre_map)
                         )
