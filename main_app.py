@@ -19,6 +19,14 @@ sidebar_setting = st.markdown(
         """,
         unsafe_allow_html=True,
     )
+hide_st_style = """
+                <style>
+                #MainMenu {visibility: hidden;}
+ 
+                header {visibility: hidden;}
+                </style>
+                """
+st.markdown(hide_st_style, unsafe_allow_html=True)
     #sidebar logo
 
 
@@ -30,25 +38,12 @@ with st.sidebar:
                             menu_icon="cast",
                             default_index=0
                             )
-hide_st_style = """
-                <style>
-                #MainMenu {visibility: hidden;}
- 
-                header {visibility: hidden;}
-                </style>
-                """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+
+if selected=="Preacquisition":
+    menu_data = [{'label':"Preacquisition"}]
+    menu_id = hc.nav_bar(mendu_definition=menu_data)
 
 
-menu_data = [
-    {'label':"Left End"},
-    {'label':"Book"},
-    {'label':"Component"},
-    {'label':"Dashboard"},
-    {'label':"Right End"},
-]
-
-menu_id = hc.nav_bar(menu_definition=menu_data)
 
 st.info(f"{menu_id=}")
 footer="""
