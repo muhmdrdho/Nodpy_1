@@ -20,7 +20,7 @@ sidebar_setting = st.markdown(
         unsafe_allow_html=True,
     )
     #sidebar logo
-st.sidebar.image('app/assets/logo/Nodpy2.png')
+
 
     #sidebar main menu
 st.sidebar.image('app/assets/logo/Nodpy2.png')
