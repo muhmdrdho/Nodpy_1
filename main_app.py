@@ -38,10 +38,10 @@ with st.sidebar:
                             menu_icon="cast",
                             default_index=0
                             )
-
+over_theme = {'txc_inactive': 'purple','menu_background':'red','txc_active':'yellow','option_active':'blue'}
 if selected=="Preacquisition":
     menu_data = [{'label':"Preacquisition"}]
-    menu_id = hc.nav_bar(menu_definition=menu_data)
+    menu_id = hc.nav_bar(menu_definition=menu_data, override_theme=over_theme)
 
 
 
