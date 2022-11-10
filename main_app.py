@@ -19,6 +19,16 @@ sidebar_setting = st.markdown(
         """,
         unsafe_allow_html=True,
     )
+sidebar_removed = st.markdown(
+        """
+        <style>
+            .css-1o0o1ai {
+                        visibility: hidden;
+                        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 hide_st_style = """
                 <style>
                 #MainMenu {visibility: hidden;}
