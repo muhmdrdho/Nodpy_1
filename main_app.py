@@ -11,7 +11,7 @@ sidebar_setting = st.markdown(
                         flex-shrink: 0;
                         height: calc(100vh - 2px);
                         top: 0px;
-                        width: 18rem;
+                        width: 17rem;
                         z-index: 999991;
                         margin-left: 0px;
                         }
@@ -165,5 +165,5 @@ if upload_pre is not None :
 cols = st.columns([4,1])
 if selected=="Preacquisition":
     with cols[0]:
-        
-        card1 = card_component(title="Digital Map")
+        st.subheader("Digital Map")
+        folium_static(pre_map)
