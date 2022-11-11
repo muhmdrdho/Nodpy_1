@@ -149,14 +149,7 @@ plugins.Draw(export=True, filename='data.geojson', position='topleft', draw_opti
             #Measure Control
 plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(pre_map)
 
-upload_pre = st.file_uploader("choose your file")
-if upload_pre is not None :
-    data_pre = pd.read_csv(upload_pre)
-    coordinate_data = data_pre
-    coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-    coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-    for i in range(len(coordinate_data)):
-        folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(pre_map)
+
     
  
         
@@ -167,3 +160,14 @@ if selected=="Preacquisition":
     with cols[0]:
         st.subheader("Digital Map")
         folium_static(pre_map)
+
+    with cols[1]:
+        st.subheader("SetBox")
+        upload_pre = st.file_uploader("choose your file")
+        if upload_pre is not None :
+            data_pre = pd.read_csv(upload_pre)
+            coordinate_data = data_pre
+            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+            for i in range(len(coordinate_data)):
+                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(pre_map)
