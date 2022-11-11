@@ -155,7 +155,7 @@ plugins.MeasureControl(position='topright', primary_length_unit='meters', second
         
   
 #columns
-cols = st.columns([4,1])
+cols = st.columns([4,2])
 if selected=="Preacquisition":
     with cols[0]:
         st.subheader("Digital Map")
