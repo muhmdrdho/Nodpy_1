@@ -166,7 +166,7 @@ cols = st.columns([4,1])
 if selected=="Preacquisition":
     with cols[0]:
         
-        card_component(title="Digital Map",
+        card_component(
                         subtitle="See what you want to",
                         body=folium_static(pre_map)
                         )
