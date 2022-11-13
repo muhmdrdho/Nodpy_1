@@ -150,7 +150,7 @@ n = folium.GeoJson(
                     data = state_geo,
                     style_function = lambda feature: {
                                                         'fillColor': get_color(feature),
-                                                        'fillOpacity': geology_map_slider,
+                                                        'fillOpacity': 0,
                                                         'color' : 'black',
                                                         'weight' : 1,
                                                     }    
