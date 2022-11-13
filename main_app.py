@@ -2,32 +2,32 @@ from app.index_lib import *
 
 st.set_page_config( layout="wide", initial_sidebar_state="expanded")
 sidebar_setting = st.markdown(
-        """
-        <style>
-            .css-1fkbmr9 {
-                        background-color: rgb(245, 245, 245);
-                        background-attachment: fixed;
-                        flex-shrink: 0;
-                        height: calc(100vh - 2px);
-                        top: 0px;
-                        width: 17rem;
-                        z-index: 999991;
-                        margin-left: 0px;
-                        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+                                """
+                                <style>
+                                    .css-1fkbmr9 {
+                                                background-color: rgb(245, 245, 245);
+                                                background-attachment: fixed;
+                                                flex-shrink: 0;
+                                                height: calc(100vh - 2px);
+                                                top: 0px;
+                                                width: 17rem;
+                                                z-index: 999991;
+                                                margin-left: 0px;
+                                                }
+                                </style>
+                                """,
+                                unsafe_allow_html=True,
+                            )
 sidebar_expand_hide = st.markdown(
-        """
-        <style>
-            .css-1o0o1ai {
-                        visibility: hidden;
-                        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+                                    """
+                                    <style>
+                                        .css-1o0o1ai {
+                                                    visibility: hidden;
+                                                    }
+                                    </style>
+                                    """,
+                                    unsafe_allow_html=True,
+                                )
     #sidebar logo
 st.sidebar.image('app/assets/logo/Nodpy2.png')
 
@@ -88,8 +88,8 @@ if selected=="Preacquisition":
     with cols[0]:
         st.subheader("Digital Map")
         st_folium(pre_map, width=700)
-from app.core.maps import *
 
+        from app.core.maps import *
     
 
     
