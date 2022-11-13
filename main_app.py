@@ -187,12 +187,29 @@ if selected=="Preacquisition":
 if selected=="Interpretation":
     st.header("Interpretation")
     st.markdown("---")
+    number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
+    number_of_tabs = int(number_of_tabs)
     with st.container():
         cols = st.columns([5,2])
         with cols[1]:
             st.subheader("Set Box")
-            number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
-            number_of_tabs = int(number_of_tabs)
+            
+            upload_pre = st.file_uploader("choose your file")
+            with st.expander("Set your map"):
+                st.subheader("Marker")
+                st.write("For all of digital maps")
+                loc_num_lat = st.number_input("Mark your latitude")
+                loc_num_long = st.number_input("Mark your longitude")
+                st.subheader("Slider")
+                st.write("Just for geology map")
+                geology_map_slider = st.slider('Set your geology map transparency', 0.0,1.0)
+        if upload_pre is not None :
+            data_pre = pd.read_csv(upload_pre)
+            coordinate_data = data_pre
+            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+            for i in range(len(coordinate_data)):
+                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(pre_map)
     with st.container():
         with cols[0]:
             st.subheader("Digital Map")
