@@ -85,7 +85,7 @@ if selected=="Preacquisition":
 
     with cols[0]:
         st.subheader("Digital Map")
-        st_folium(pre_map, width=900)
+        st_folium(pre_map, width=700)
 
 
 #Initialize 
