@@ -194,7 +194,7 @@ if selected=="Interpretation":
     with cols[0]:
         tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
         for i in range(number_of_tabs):
-            with tabs[1]:
+            with tabs[0]:
                 st.subheader(f"this is tab{i+1}")
 
 
