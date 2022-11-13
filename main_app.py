@@ -274,6 +274,12 @@ if selected=="Interpretation":
                     clabels.append('%2.4f' % c) 
                 thecbar=fig_cond.colorbar(cc_cond, ax=axes_cond,format='%.5f',ticks=clevels_cond, orientation="horizontal")
                 thecbar.ax.set_xticklabels(clabels, rotation=45)
+
+                coordinate_data = data
+                coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+                coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+                for i in range(len(coordinate_data)):
+                    folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
                 
         with cols[0]:
             st.subheader("Digital Map")
@@ -347,11 +353,7 @@ if selected=="Interpretation":
                         #Measure Control
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
             
-            coordinate_data = data
-            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-            for i in range(len(coordinate_data)):
-                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
+            
             st_folium(int_map, width=700)
         
         
