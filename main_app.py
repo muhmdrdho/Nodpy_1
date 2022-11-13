@@ -68,10 +68,7 @@ if selected=="Preacquisition":
         st.subheader("SetBox")
         upload_pre = st.file_uploader("choose your file")
         with st.expander("Set your map"):
-            st.markdown("""
-                            <style>
-                                    <h2>Marker</h2>
-                            </style>""", unsafe_allow_html=True)
+            st.subheader("Marker")
             loc_num_lat = st.number_input("Mark your latitude")
             loc_num_long = st.number_input("Mark your longitude")
             geology_map_slider = st.slider('Set your geology map transparency', 0.0,1.0)
