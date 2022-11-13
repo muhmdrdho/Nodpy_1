@@ -61,12 +61,15 @@ with st.sidebar:
                             )
 
 pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
+
 if selected=="Preacquisition":
     cols = st.columns([5,2])
     with cols[1]:
         st.subheader("SetBox")
         upload_pre = st.file_uploader("choose your file")
         with st.expander("Set your map"):
+            loc_num_lat = st.number_input("Mark your latitude")
+            loc_num_long = st.number_input("Mark your longitude")
             geology_map_slider = st.slider('Set your geology map transparency', 0.0,1.0)
         if upload_pre is not None :
             data_pre = pd.read_csv(upload_pre)
@@ -99,6 +102,8 @@ if selected=="Preacquisition":
                 return '#8c8c8c' # MISSING -> gray
             else:
                 return color_scale(value)
+
+        loc_data = [loc_num_lat, loc_num_long]
 
         
             
@@ -142,6 +147,7 @@ if selected=="Preacquisition":
         n = folium.GeoJson(
                             name= 'Geology Map',
                             data = state_geo,
+                            
                             style_function = lambda feature: {
                                                                 'fillColor': get_color(feature),
                                                                 'fillOpacity': geology_map_slider,
