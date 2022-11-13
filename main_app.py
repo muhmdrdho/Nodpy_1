@@ -142,7 +142,7 @@ if selected=="Preacquisition":
                             data = state_geo,
                             style_function = lambda feature: {
                                                                 'fillColor': get_color(feature),
-                                                                'fillOpacity': 1,
+                                                                'fillOpacity': geology_map_slider,
                                                                 'color' : 'black',
                                                                 'weight' : 1,
                                                             }    
