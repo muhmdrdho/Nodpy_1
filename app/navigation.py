@@ -1,4 +1,10 @@
 
+with st.sidebar:
+    selected = option_menu("Main Menu",["Preacquisition", "Interpretation", "About"],
+                            icons=["file","compass","megaphone"],
+                            menu_icon="cast",
+                            default_index=0
+                            )
 if selected=="Preacquisition":
     with cols[1]:
         st.subheader("SetBox")
