@@ -1,6 +1,6 @@
 from app.index_lib import *
 from st_card_component_2 import card_component
-st.set_page_config(layout='wide', initial_sidebar_state="expanded")
+st.set_page_config( initial_sidebar_state="expanded")
     #sidebar
 sidebar_setting = st.markdown(
         """
