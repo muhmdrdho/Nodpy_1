@@ -207,7 +207,7 @@ if selected=="Interpretation":
                     data = pd.read_csv(upload)
                 #input
                     filein = data  
-                    ncolours=12 
+                    ncolours=15 
                     colourscheme='Spectral_r' 
             #Resistivity
                     rhos_min = filein['Resistivity'].min()
