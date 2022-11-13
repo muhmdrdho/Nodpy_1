@@ -190,7 +190,7 @@ if selected=="Interpretation":
     cols = st.columns([5,2])
     with cols[1]:
         st.subheader("Set Box")
-        number_of_tabs = st.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
+        number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
         number_of_tabs = int(number_of_tabs)
     with cols[0]:
         st.subheader("Digital Map")
