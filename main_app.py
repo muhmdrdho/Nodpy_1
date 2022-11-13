@@ -67,7 +67,7 @@ if selected=="Preacquisition":
         st.subheader("SetBox")
         upload_pre = st.file_uploader("choose your file")
         with st.expander("Set your map"):
-            geology_map_slider = st.slider('Set your geology map transparency', 0.0, 1.0,(0.2, 0.7))
+            geology_map_slider = st.slider('Set your geology map transparency', 0.0, 1.0)
         if upload_pre is not None :
             data_pre = pd.read_csv(upload_pre)
             coordinate_data = data_pre
