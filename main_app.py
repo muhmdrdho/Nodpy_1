@@ -64,6 +64,8 @@ with st.sidebar:
                             menu_icon="cast",
                             default_index=0
                             )
+                            
+pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
 if selected=="Preacquisition":
     cols = st.columns([5,2])
     with cols[1]:
@@ -101,7 +103,7 @@ if selected=="Preacquisition":
             else:
                 return color_scale(value)
 
-        pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
+        
             
             #base tile map
         Esri_Satellite = folium.TileLayer(
