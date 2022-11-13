@@ -1,6 +1,26 @@
 import folium
 from folium import plugins
+import pandas as pd
+import geopandas as gpd
+from branca.colormap import LinearColormap
 
+#Initialize 
+df_map = pd.read_csv("app/assets/data/Geology+Jambi4.csv")
+df_map1 = df_map[["SYMBOLS","IDX_FORMATION"]]
+state_geo = "app/assets/data/Geology+Jambi.geojson"
+geojson = gpd.read_file(state_geo)
+geojson_states = list(geojson.SYMBOLS.values)
+final_df = geojson.merge(df_map, on="SYMBOLS")
+map_dict = df_map1.set_index('SYMBOLS')['IDX_FORMATION'].to_dict()
+
+
+color_scale = LinearColormap(['darkblue','brown','tan','olive','blue','cyan','yellow','orange','red','aquamarine','azure','navy','teal','beige'], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
+def get_color(feature):
+    value = map_dict.get(feature['properties']['SYMBOLS'])
+    if value is None:
+        return '#8c8c8c' # MISSING -> gray
+    else:
+        return color_scale(value)
 
 pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     
@@ -42,14 +62,14 @@ Google_Maps = folium.TileLayer(
                                                         ).add_to(pre_map)
 
 n = folium.GeoJson(
-                                name= 'Geology Map',
-                                data = state_geo,
-                                style_function = lambda feature: {
-                                    'fillColor': get_color(feature),
-                                    'fillOpacity': geology_map_slider,
-                                    'color' : 'black',
-                                    'weight' : 1,
-                                    }    
+                    name= 'Geology Map',
+                    data = state_geo,
+                    style_function = lambda feature: {
+                                                        'fillColor': get_color(feature),
+                                                        'fillOpacity': 0.7,
+                                                        'color' : 'black',
+                                                        'weight' : 1,
+                                                    }    
                                 ).add_to(pre_map)
     #Layer control
 folium.LayerControl().add_to(pre_map)
