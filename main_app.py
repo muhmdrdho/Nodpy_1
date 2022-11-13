@@ -70,7 +70,7 @@ if selected=="Preacquisition":
         with st.expander("Set your map"):
             st.markdown("""
                             <style>
-                                    <h3>Marker</h3>
+                                    <h2>Marker</h2>
                             </style>""", unsafe_allow_html=True)
             loc_num_lat = st.number_input("Mark your latitude")
             loc_num_long = st.number_input("Mark your longitude")
