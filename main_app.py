@@ -85,7 +85,7 @@ if selected=="Preacquisition":
     with cols[1]:
         st.subheader("SetBox")
         upload_pre = st.file_uploader("choose your file")
-        with st.expander("Set your map"):
+        with st.expander("Set your map", expanded=True):
             st.subheader("Marker")
             st.write("For all of digital maps")
             loc_num_lat = st.number_input("Mark your latitude")
@@ -196,7 +196,7 @@ if selected=="Interpretation":
             st.subheader("Set Box")
             
             upload_pre = st.file_uploader("choose your file")
-            with st.expander("Set your map"):
+            with st.expander("Set your map", expanded=True):
                 st.subheader("Marker")
                 st.write("For all of digital maps")
                 loc_num_lat1 = st.number_input("Mark your latitude")
@@ -210,11 +210,11 @@ if selected=="Interpretation":
             coordinate_data = coordinate_data.dropna(subset=['Latitude'])
             coordinate_data = coordinate_data.dropna(subset=['Longitude'])
             for i in range(len(coordinate_data)):
-                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(pre_map)
+                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
     with st.container():
         with cols[0]:
             st.subheader("Digital Map")
-            folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(pre_map)
+            folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
 
         
             
