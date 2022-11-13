@@ -77,7 +77,7 @@ if selected=="Preacquisition":
                 folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(pre_map)
 
         with st.expander("Set your map"):
-            geology_map_slider = st.slider('Set your geology map transparency', 0, 0.1, 0.7)
+            geology_map_slider = st.slider('Set your geology map transparency', 0.0, 1.0,(0.2, 0.7))
         
 
 #Map Processing
