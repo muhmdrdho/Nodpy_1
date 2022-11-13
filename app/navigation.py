@@ -1,4 +1,9 @@
 import streamlit as st
+from streamlit_option_menu import option_menu
+import folium
+import pandas as pd
+from streamlit_folium import st_folium
+
 with st.sidebar:
     selected = option_menu("Main Menu",["Preacquisition", "Interpretation", "About"],
                             icons=["file","compass","megaphone"],
@@ -6,6 +11,7 @@ with st.sidebar:
                             default_index=0
                             )
 if selected=="Preacquisition":
+    cols = st.columns([5,2])
     with cols[1]:
         st.subheader("SetBox")
         upload_pre = st.file_uploader("choose your file")

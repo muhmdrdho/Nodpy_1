@@ -66,7 +66,7 @@ n = folium.GeoJson(
                     data = state_geo,
                     style_function = lambda feature: {
                                                         'fillColor': get_color(feature),
-                                                        'fillOpacity': 0.7,
+                                                        'fillOpacity': 1,
                                                         'color' : 'black',
                                                         'weight' : 1,
                                                     }    
