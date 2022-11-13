@@ -85,7 +85,7 @@ if selected=="Preacquisition":
 
     with cols[0]:
         st.subheader("Digital Map")
-        st_folium(pre_map, width=700)
+        st_folium(pre_map, width=900)
 
 
 #Initialize 
@@ -150,7 +150,7 @@ n = folium.GeoJson(
                     data = state_geo,
                     style_function = lambda feature: {
                                                         'fillColor': get_color(feature),
-                                                        'fillOpacity': 0,
+                                                        'fillOpacity': geology_map_slider,
                                                         'color' : 'black',
                                                         'weight' : 0,
                                                     }    
