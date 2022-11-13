@@ -359,7 +359,11 @@ if selected=="Interpretation":
                     with cols[1]:
                         st.pyplot(fig_cond)
 
-
+            coordinate_data = filein
+            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+            for i in range(len(coordinate_data)):
+                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
         
     
 
