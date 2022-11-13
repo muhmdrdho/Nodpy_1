@@ -103,9 +103,8 @@ if selected=="Preacquisition":
             else:
                 return color_scale(value)
 
-        loc_data = [loc_num_lat, loc_num_long]
-        for coords in loc_data:
-            folium.Marker(location=[coords[0], coords[1]]).add_to(pre_map)
+        
+        folium.Marker(location=[loc_num_lat, loc_num_long]).add_to(pre_map)
 
         
             
