@@ -194,8 +194,7 @@ if selected=="Interpretation":
         cols = st.columns([5,2])
         with cols[1]:
             st.subheader("Set Box")
-            
-            upload_pre = st.file_uploader("choose your file")
+    
             with st.expander("Set your map", expanded=True):
                 st.subheader("Marker")
                 st.write("For all of digital maps")
@@ -204,14 +203,16 @@ if selected=="Interpretation":
                 st.subheader("Slider")
                 st.write("Just for geology map")
                 geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
-        
-   
+                
+        tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
+        for i in range(number_of_tabs):
+            with tabs[i]:
+                st.subheader("Resistivity")
+                upload = st.file_uploader(f"this is tab{i+1}")
+
         with cols[0]:
             st.subheader("Digital Map")
             folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
-
-        
-            
             #base tile map
             Esri_Satellite = folium.TileLayer(
                                                                     tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -284,11 +285,8 @@ if selected=="Interpretation":
             st_folium(int_map, width=700)
         
         
-        tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
-        for i in range(number_of_tabs):
-            with tabs[i]:
-                st.subheader("Resistivity")
-                upload = st.file_uploader(f"this is tab{i+1}")
+        
+            
                 if upload is not None:
                     data = pd.read_csv(upload)
                 #input
