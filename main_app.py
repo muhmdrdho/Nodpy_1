@@ -78,6 +78,28 @@ def get_color(feature):
 st.header("Preacquisition")
 st.markdown("---")
 
+
+
+    
+ 
+#columns
+cols = st.columns([5,2])
+if selected=="Preacquisition":
+    
+
+    with cols[1]:
+        st.subheader("SetBox")
+        upload_pre = st.file_uploader("choose your file")
+        if upload_pre is not None :
+            data_pre = pd.read_csv(upload_pre)
+            coordinate_data = data_pre
+            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+            for i in range(len(coordinate_data)):
+                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(pre_map)
+
+        geology_map_slider = ('Set your geology map transparency', 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
+
 #Map Processing
 pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     
@@ -149,25 +171,6 @@ plugins.Draw(export=True, filename='data.geojson', position='topleft', draw_opti
             #Measure Control
 plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(pre_map)
 
-
-    
- 
-#columns
-cols = st.columns([5,2])
-if selected=="Preacquisition":
     with cols[0]:
-        st.subheader("Digital Map")
-        folium_static(pre_map)
-
-    with cols[1]:
-        st.subheader("SetBox")
-        upload_pre = st.file_uploader("choose your file")
-        if upload_pre is not None :
-            data_pre = pd.read_csv(upload_pre)
-            coordinate_data = data_pre
-            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-            for i in range(len(coordinate_data)):
-                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(pre_map)
-
-        geology_map_slider = ('Set your geology map transparency', 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
+            st.subheader("Digital Map")
+            folium_static(pre_map)
