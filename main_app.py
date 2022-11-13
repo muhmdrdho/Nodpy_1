@@ -194,8 +194,9 @@ if selected=="Interpretation":
             number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
             number_of_tabs = int(number_of_tabs)
     with st.container():
-        st.subheader("Digital Map")
-        st_folium(pre_map, width=700, height=400)
+        with cols[0]:
+            st.subheader("Digital Map")
+            st_folium(pre_map, width=700, height=400)
         
         
         tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
