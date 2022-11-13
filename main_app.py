@@ -90,7 +90,9 @@ if selected=="Preacquisition":
         map_dict = df_map1.set_index('SYMBOLS')['IDX_FORMATION'].to_dict()
 
 
-        color_scale = LinearColormap(['darkblue','brown','tan','olive','blue','cyan','yellow','orange','red','aquamarine','azure','navy','teal','beige'], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
+        color_scale = LinearColormap(['darkblue','brown','blue','green','skyblue','purple','pink','cadetblue',
+                            'turquoise','blue','orange','yellow','seagreen','red','maroon','midnightblue',
+                            'aquamarine','azure','navy','teal','beige','darkgreen',], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
         def get_color(feature):
             value = map_dict.get(feature['properties']['SYMBOLS'])
             if value is None:
@@ -144,7 +146,7 @@ if selected=="Preacquisition":
                                                                 'fillColor': get_color(feature),
                                                                 'fillOpacity': geology_map_slider,
                                                                 'color' : 'black',
-                                                                'weight' : 1,
+                                                                'weight' : 0,
                                                             }    
                                         ).add_to(pre_map)
             #Layer control
