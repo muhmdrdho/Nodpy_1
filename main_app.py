@@ -203,7 +203,7 @@ if selected=="Interpretation":
                 st.subheader("Slider")
                 st.write("Just for geology map")
                 geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
-                
+
         tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
         for i in range(number_of_tabs):
             with tabs[i]:
@@ -286,7 +286,7 @@ if selected=="Interpretation":
         
         
         
-            
+            with tabs[i]:
                 if upload is not None:
                     data = pd.read_csv(upload)
                 #input
