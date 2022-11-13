@@ -1,4 +1,4 @@
-
+import streamlit as st
 with st.sidebar:
     selected = option_menu("Main Menu",["Preacquisition", "Interpretation", "About"],
                             icons=["file","compass","megaphone"],
