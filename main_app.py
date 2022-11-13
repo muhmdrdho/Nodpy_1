@@ -72,6 +72,8 @@ if selected=="Preacquisition":
             st.write("For all of digital maps")
             loc_num_lat = st.number_input("Mark your latitude")
             loc_num_long = st.number_input("Mark your longitude")
+            st.subheader("Slider")
+            st.write("Just for geology map")
             geology_map_slider = st.slider('Set your geology map transparency', 0.0,1.0)
         if upload_pre is not None :
             data_pre = pd.read_csv(upload_pre)
