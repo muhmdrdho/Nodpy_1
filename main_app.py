@@ -189,6 +189,7 @@ if selected=="Interpretation":
     st.markdown("---")
     number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
     number_of_tabs = int(number_of_tabs)
+    int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     with st.container():
         cols = st.columns([5,2])
         with cols[1]:
@@ -213,7 +214,79 @@ if selected=="Interpretation":
     with st.container():
         with cols[0]:
             st.subheader("Digital Map")
-            st_folium(pre_map, width=700, height=400)
+            folium.Marker(location=[loc_num_lat, loc_num_long]).add_to(pre_map)
+
+        
+            
+            #base tile map
+            Esri_Satellite = folium.TileLayer(
+                                                                    tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                                                                    attr = 'Esri',
+                                                                    name = 'Esri Satellite',
+                                                                    overlay = True,
+                                                                    control = True
+                                                                    ).add_to(int_map)
+            Google_Satellite_Hybrid =  folium.TileLayer(
+                                                                    tiles = 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
+                                                                    attr = 'Google',
+                                                                    name = 'Google Satellite',
+                                                                    overlay = True,
+                                                                    control = True
+                                                                    ).add_to(int_map)
+            Google_Terrain = folium.TileLayer(
+                                                                    tiles = 'https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
+                                                                    attr = 'Google',
+                                                                    name = 'Google Terrain',
+                                                                    overlay = True,
+                                                                    control = True
+                                                                    ).add_to(int_map)
+            Google_Satellite = folium.TileLayer(
+                                                                    tiles = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+                                                                    attr = 'Google',
+                                                                    name = 'Google Satellite',
+                                                                    overlay = True,
+                                                                    control = True
+                                                                    ).add_to(int_map)
+            Google_Maps = folium.TileLayer(
+                                                                    tiles = 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+                                                                    attr = 'Google',
+                                                                    name = 'Google Maps',
+                                                                    overlay = True,
+                                                                    control = True
+                                                                    ).add_to(int_map)
+
+            m = folium.GeoJson(
+                                name= 'Geology Map',
+                                data = state_geo,
+                                
+                                style_function = lambda feature: {
+                                                                    'fillColor': get_color(feature),
+                                                                    'fillOpacity': geology_map_slider,
+                                                                    'color' : 'black',
+                                                                    'weight' : 0,
+                                                                }    
+                                            ).add_to(int_map)
+                #Layer control
+            folium.LayerControl().add_to(int_map)
+                
+                #Fullscreeen
+            plugins.Fullscreen().add_to(int_map)
+
+                #Locate Control
+            plugins.LocateControl().add_to(int_map)
+                #Locate Control
+                        
+                        
+                        #Cursor Postion
+            fmtr = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
+            plugins.MousePosition(position='topright', separator=' | ', prefix="Mouse:",lat_formatter=fmtr, lng_formatter=fmtr).add_to(int_map)
+                        
+                        #Add the draw 
+            plugins.Draw(export=True, filename='data.geojson', position='topleft', draw_options=None, edit_options=None).add_to(int_map)
+                        
+                        #Measure Control
+            plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
+            st_folium(int_map, width=700)
         
         
         tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
