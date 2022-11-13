@@ -203,8 +203,8 @@ if selected=="Interpretation":
                 st.subheader("Slider")
                 st.write("Just for geology map")
                 geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
-       
-            
+        
+   
         with cols[0]:
             st.subheader("Digital Map")
             folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
@@ -280,7 +280,8 @@ if selected=="Interpretation":
             st_folium(int_map, width=700)
         
         
-        
+        tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
+        for i in range(number_of_tabs):
             with tabs[i]:
                 st.subheader("Resistivity")
                 upload = st.file_uploader(f"this is tab{i+1}")
