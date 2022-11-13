@@ -1,7 +1,7 @@
 from app.index_lib import *
 
 st.set_page_config( layout="wide", initial_sidebar_state="expanded")
-from app.core.maps import *
+
     #sidebar
 sidebar_setting = st.markdown(
         """
@@ -152,7 +152,7 @@ n = folium.GeoJson(
                                                         'fillColor': get_color(feature),
                                                         'fillOpacity': 0,
                                                         'color' : 'black',
-                                                        'weight' : 1,
+                                                        'weight' : 0,
                                                     }    
                                 ).add_to(pre_map)
     #Layer control
