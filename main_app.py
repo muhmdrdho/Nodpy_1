@@ -69,6 +69,7 @@ if selected=="Preacquisition":
         upload_pre = st.file_uploader("choose your file")
         with st.expander("Set your map"):
             st.subheader("Marker")
+            st.write("For all of digital maps")
             loc_num_lat = st.number_input("Mark your latitude")
             loc_num_long = st.number_input("Mark your longitude")
             geology_map_slider = st.slider('Set your geology map transparency', 0.0,1.0)
