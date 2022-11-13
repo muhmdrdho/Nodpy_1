@@ -197,6 +197,7 @@ if selected=="Interpretation":
         for i in range(number_of_tabs):
             with tabs[i]:
                 st.subheader("Digital Map")
+                st_folium(pre_map, width=700)
 
 
 
