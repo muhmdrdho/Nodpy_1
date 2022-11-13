@@ -3,9 +3,6 @@ from streamlit_folium import folium_static
 from streamlit_folium import st_folium
 from streamlit_option_menu import option_menu
 
-st.set_page_config( layout="wide", initial_sidebar_state="expanded")
-from app.core.maps import *
-    #sidebar
 sidebar_setting = st.markdown(
         """
         <style>
@@ -62,27 +59,3 @@ st.markdown(reduce_header_height_style, unsafe_allow_html=True)
 
 st.header("Preacquisition")
 st.markdown("---")
-
-cols = st.columns([5,2])
-if selected=="Preacquisition":
-    
-
-    with cols[1]:
-        st.subheader("SetBox")
-        upload_pre = st.file_uploader("choose your file")
-        if upload_pre is not None :
-            data_pre = pd.read_csv(upload_pre)
-            coordinate_data = data_pre
-            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-            for i in range(len(coordinate_data)):
-                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(pre_map)
-
-        geology_map_slider = ('Set your geology map transparency', 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
-
-#Map Processing
-
-
-    with cols[0]:
-        st.subheader("Digital Map")
-        st_folium(pre_map)
