@@ -32,12 +32,7 @@ sidebar_expand_hide = st.markdown(
 st.sidebar.image('app/assets/logo/Nodpy2.png')
 
     #sidebar main menu
-with st.sidebar:
-    selected = option_menu("Main Menu",["Preacquisition", "Interpretation", "About"],
-                            icons=["file","compass","megaphone"],
-                            menu_icon="cast",
-                            default_index=0
-                            )
+
 
 hide_st_style = """
                 <style>
@@ -64,7 +59,7 @@ with st.sidebar:
                             menu_icon="cast",
                             default_index=0
                             )
-                            
+
 pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
 if selected=="Preacquisition":
     cols = st.columns([5,2])
