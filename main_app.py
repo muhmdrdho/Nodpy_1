@@ -199,11 +199,11 @@ if selected=="Interpretation":
             with st.expander("Set your map"):
                 st.subheader("Marker")
                 st.write("For all of digital maps")
-                loc_num_lat = st.number_input("Mark your latitude")
-                loc_num_long = st.number_input("Mark your longitude")
+                loc_num_lat1 = st.number_input("Mark your latitude")
+                loc_num_long1 = st.number_input("Mark your longitude")
                 st.subheader("Slider")
                 st.write("Just for geology map")
-                geology_map_slider = st.slider('Set your geology map transparency', 0.0,1.0)
+                geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
         if upload_pre is not None :
             data_pre = pd.read_csv(upload_pre)
             coordinate_data = data_pre
@@ -214,7 +214,7 @@ if selected=="Interpretation":
     with st.container():
         with cols[0]:
             st.subheader("Digital Map")
-            folium.Marker(location=[loc_num_lat, loc_num_long]).add_to(pre_map)
+            folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(pre_map)
 
         
             
@@ -261,7 +261,7 @@ if selected=="Interpretation":
                                 
                                 style_function = lambda feature: {
                                                                     'fillColor': get_color(feature),
-                                                                    'fillOpacity': geology_map_slider,
+                                                                    'fillOpacity': geology_map_slider1,
                                                                     'color' : 'black',
                                                                     'weight' : 0,
                                                                 }    
