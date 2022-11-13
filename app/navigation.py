@@ -3,7 +3,7 @@ from streamlit_option_menu import option_menu
 import folium
 import pandas as pd
 from streamlit_folium import st_folium
-
+from app.core.maps import *
 with st.sidebar:
     selected = option_menu("Main Menu",["Preacquisition", "Interpretation", "About"],
                             icons=["file","compass","megaphone"],
