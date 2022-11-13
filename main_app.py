@@ -207,7 +207,8 @@ if selected=="Interpretation":
                 ncolours=12 
                 colourscheme='Spectral_r' 
             #Resistivity
-                
+                rhos_min = filein['Resistivity'].min()
+                rhos_max = filein['Resistivity'].max()   
             #Conductivity
                 cond_min = filein['Cond'].min()
                 cond_max = filein['Cond'].max()
