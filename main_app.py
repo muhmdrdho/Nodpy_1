@@ -203,20 +203,8 @@ if selected=="Interpretation":
                 st.subheader("Slider")
                 st.write("Just for geology map")
                 geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
-
-        tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
-        for i in range(number_of_tabs):
-            with tabs[i]:
-                st.subheader("Resistivity")
-                upload = st.file_uploader(f"this is tab{i+1}")
-                if upload is not None:
-                    data = pd.read_csv(upload)
-                    coordinate_data = data
-                    coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-                    coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-                    for i in range(len(coordinate_data)):
-                        folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
-
+       
+            
         with cols[0]:
             st.subheader("Digital Map")
             folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
@@ -294,79 +282,81 @@ if selected=="Interpretation":
         
         
             with tabs[i]:
-                
-                    
+                st.subheader("Resistivity")
+                upload = st.file_uploader(f"this is tab{i+1}")
+                if upload is not None:
+                    data = pd.read_csv(upload)
                 #input
-                filein = data  
-                ncolours=15 
-                colourscheme='Spectral_r' 
+                    filein = data  
+                    ncolours=15 
+                    colourscheme='Spectral_r' 
             #Resistivity
-                rhos_min = filein['Resistivity'].min()
-                rhos_max = filein['Resistivity'].max()
+                    rhos_min = filein['Resistivity'].min()
+                    rhos_max = filein['Resistivity'].max()
                     
 
-                clevels_res = np.logspace(np.log10(np.min(rhos_min)),np.log10(np.max(rhos_max)),num=ncolours)
-                fig, axes_res = plt.subplots( nrows=2, sharex=False, squeeze=True, sharey=True)
+                    clevels_res = np.logspace(np.log10(np.min(rhos_min)),np.log10(np.max(rhos_max)),num=ncolours)
+                    fig, axes_res = plt.subplots( nrows=2, sharex=False, squeeze=True, sharey=True)
 
-                for ax in axes_res:
-                    x=filein['X']
-                    z=filein['Depth']
-                    rho=filein['Resistivity']
-                    triang = mpl.tri.Triangulation(x, z)
-                    mask = mpl.tri.TriAnalyzer(triang).get_flat_tri_mask()
-                    triang.set_mask(mask)
+                    for ax in axes_res:
+                        x=filein['X']
+                        z=filein['Depth']
+                        rho=filein['Resistivity']
+                        triang = mpl.tri.Triangulation(x, z)
+                        mask = mpl.tri.TriAnalyzer(triang).get_flat_tri_mask()
+                        triang.set_mask(mask)
         
             
             #plt.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
             #cc=ax.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
-                    cc=ax.tricontourf(triang,rho,levels=clevels_res, norm=mpl.colors.LogNorm(vmin=rhos_min, vmax=rhos_max), cmap=colourscheme)
-                    ax.set_ylim(min(z)-2, max(z)+2)
-                    ax.set_xlim(0, max(x)+2)
+                        cc=ax.tricontourf(triang,rho,levels=clevels_res, norm=mpl.colors.LogNorm(vmin=rhos_min, vmax=rhos_max), cmap=colourscheme)
+                        ax.set_ylim(min(z)-2, max(z)+2)
+                        ax.set_xlim(0, max(x)+2)
 
-                    axes_res[0].set_visible(False)
+                        axes_res[0].set_visible(False)
 
-                clabels=[]
-                for c in clevels_res: 
-                    clabels.append('%d' % c) 
-                thecbar=fig.colorbar(cc, ax=axes_res,format='%.5f',ticks=clevels_res, orientation="horizontal")
-                thecbar.ax.set_xticklabels(clabels, rotation=45)
+                    clabels=[]
+                    for c in clevels_res: 
+                        clabels.append('%d' % c) 
+                    thecbar=fig.colorbar(cc, ax=axes_res,format='%.5f',ticks=clevels_res, orientation="horizontal")
+                    thecbar.ax.set_xticklabels(clabels, rotation=45)
 
             #Conductivity
-                cond_min = filein['Cond'].min()
-                cond_max = filein['Cond'].max()
+                    cond_min = filein['Cond'].min()
+                    cond_max = filein['Cond'].max()
                     
 
-                clevels_cond = np.logspace(np.log10(np.min(cond_min)),np.log10(np.max(cond_max)),num=ncolours)
-                fig_cond, axes_cond = plt.subplots( nrows=2, sharex=False, squeeze=True, sharey=True)
+                    clevels_cond = np.logspace(np.log10(np.min(cond_min)),np.log10(np.max(cond_max)),num=ncolours)
+                    fig_cond, axes_cond = plt.subplots( nrows=2, sharex=False, squeeze=True, sharey=True)
 
-                for ax in axes_cond:
-                    x=filein['X']
-                    z=filein['Depth']
-                    rho=filein['Cond']
-                    triang = mpl.tri.Triangulation(x, z)
-                    mask = mpl.tri.TriAnalyzer(triang).get_flat_tri_mask()
-                    triang.set_mask(mask)
+                    for ax in axes_cond:
+                        x=filein['X']
+                        z=filein['Depth']
+                        rho=filein['Cond']
+                        triang = mpl.tri.Triangulation(x, z)
+                        mask = mpl.tri.TriAnalyzer(triang).get_flat_tri_mask()
+                        triang.set_mask(mask)
         
             
             #plt.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
             #cc=ax.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
-                    cc_cond=ax.tricontourf(triang,rho,levels=clevels_cond, norm=mpl.colors.LogNorm(vmin=cond_min, vmax=cond_max), cmap=colourscheme)
-                    ax.set_ylim(min(z)-2, max(z)+2)
-                    ax.set_xlim(0, max(x)+5)
+                        cc_cond=ax.tricontourf(triang,rho,levels=clevels_cond, norm=mpl.colors.LogNorm(vmin=cond_min, vmax=cond_max), cmap=colourscheme)
+                        ax.set_ylim(min(z)-2, max(z)+2)
+                        ax.set_xlim(0, max(x)+5)
 
-                    axes_cond[0].set_visible(False)
+                        axes_cond[0].set_visible(False)
 
-                clabels=[]
-                for c in clevels_cond: 
-                    clabels.append('%2.4f' % c) 
-                thecbar=fig_cond.colorbar(cc_cond, ax=axes_cond,format='%.5f',ticks=clevels_cond, orientation="horizontal")
-                thecbar.ax.set_xticklabels(clabels, rotation=45)
+                    clabels=[]
+                    for c in clevels_cond: 
+                        clabels.append('%2.4f' % c) 
+                    thecbar=fig_cond.colorbar(cc_cond, ax=axes_cond,format='%.5f',ticks=clevels_cond, orientation="horizontal")
+                    thecbar.ax.set_xticklabels(clabels, rotation=45)
                     
-                cols = st.columns(2)
-                with cols[0]:
-                    st.pyplot(fig)
-                with cols[1]:
-                    st.pyplot(fig_cond)
+                    cols = st.columns(2)
+                    with cols[0]:
+                        st.pyplot(fig)
+                    with cols[1]:
+                        st.pyplot(fig_cond)
 
 
         
