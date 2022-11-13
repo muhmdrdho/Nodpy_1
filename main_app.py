@@ -37,7 +37,7 @@ st.sidebar.image('app/assets/logo/Nodpy2.png')
 hide_st_style = """
                 <style>
                 #MainMenu {visibility: hidden;}
- 
+                footer {visibility: hidden;}
                 header {visibility: hidden;}
                 </style>
                 """
@@ -189,6 +189,7 @@ if selected=="Interpretation":
     st.markdown("---")
     cols = st.columns([5,2])
     with cols[1]:
+        st.subheader("Set Box")
         number_of_tabs = st.number_input("Number of Tabs", min_value=1, max_value=20, value=1)
         number_of_tabs = int(number_of_tabs)
     with cols[0]:
