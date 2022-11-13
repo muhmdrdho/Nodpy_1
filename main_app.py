@@ -123,7 +123,7 @@ n = folium.GeoJson(
                                 data = state_geo,
                                 style_function = lambda feature: {
                                     'fillColor': get_color(feature),
-                                    'fillOpacity': 0.7,
+                                    'fillOpacity': geology_map_slider,
                                     'color' : 'black',
                                     'weight' : 1,
                                     }    
@@ -152,8 +152,6 @@ plugins.MeasureControl(position='topright', primary_length_unit='meters', second
 
     
  
-        
-  
 #columns
 cols = st.columns([5,2])
 if selected=="Preacquisition":
@@ -171,3 +169,5 @@ if selected=="Preacquisition":
             coordinate_data = coordinate_data.dropna(subset=['Longitude'])
             for i in range(len(coordinate_data)):
                 folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(pre_map)
+
+        geology_map_slider = ('Set your geology map transparency', 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
