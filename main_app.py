@@ -59,7 +59,7 @@ st.markdown(reduce_header_height_style, unsafe_allow_html=True)
 
 st.header("Preacquisition")
 st.markdown("---")
-
+pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
 cols = st.columns([5,2])
 if selected=="Preacquisition":
     
@@ -106,7 +106,7 @@ def get_color(feature):
     else:
         return color_scale(value)
 
-pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
+
     
     #base tile map
 Esri_Satellite = folium.TileLayer(
