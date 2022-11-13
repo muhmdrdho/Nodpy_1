@@ -50,8 +50,7 @@ reduce_header_height_style = """
         """
 st.markdown(reduce_header_height_style, unsafe_allow_html=True)
 
-st.header("Preacquisition")
-st.markdown("---")
+
 
 with st.sidebar:
     selected = option_menu("Main Menu",["Preacquisition", "Interpretation", "About"],
@@ -63,6 +62,9 @@ with st.sidebar:
 pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
 
 if selected=="Preacquisition":
+    st.header("Preacquisition")
+    st.markdown("---")
+
     cols = st.columns([5,2])
     with cols[1]:
         st.subheader("SetBox")
@@ -181,6 +183,21 @@ if selected=="Preacquisition":
                     #Measure Control
         plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(pre_map)
         st_folium(pre_map, width=700)
+
+if selected=="Interpretation":
+    st.header("Interpretation")
+    st.markdown("---")
+    cols = st.columns([5,2])
+    with cols[1]:
+        number_of_tabs = st.number_input("Number of Tabs", min_value=1, max_value=20, value=1)
+        number_of_tabs = int(number_of_tabs)
+    with cols[0]:
+        tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
+        for i in range(number_of_tabs):
+            with tabs[1]:
+                st.subheader(f"this is tab{i+1}")
+
+
 
         
     
