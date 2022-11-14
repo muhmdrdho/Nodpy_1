@@ -365,7 +365,7 @@ if selected=="Interpretation":
                     
 
 
-    x= data
+    
     
 
                     
