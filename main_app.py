@@ -361,13 +361,13 @@ if selected=="Interpretation":
                         st.pyplot(fig)
                     with cols[1]:
                         st.pyplot(fig_cond)
-
+                    coordinate_data = data
+                    coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+                    coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+                    for i in range(len(coordinate_data)):
+                        folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map) 
         with cols[0]:
-            coordinate_data = data
-            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-            for i in range(len(coordinate_data)):
-                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map) 
+            
             folium_static(int_map, width=700)       
 
 
