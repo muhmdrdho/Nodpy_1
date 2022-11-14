@@ -294,7 +294,7 @@ if selected=="Interpretation":
             with tabs[i]:
                 st.subheader("Resistivity")
                 
-                data = pd.read_csv(uploaded_file)
+                data = coordinate_data
                     #input
                 filein = data  
                 ncolours=15 
