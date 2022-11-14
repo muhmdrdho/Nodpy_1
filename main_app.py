@@ -194,7 +194,9 @@ if selected=="Interpretation":
         cols = st.columns([5,2])
         with cols[1]:
             st.subheader("Set Box")
-            
+            uploaded_file = st.file_uploader("Choose", accept_multiple_files=True)
+            for uploaded_files in uploaded_file:
+                data = pd.read_csv("choose")
             with st.expander("Set your map", expanded=True):
                 st.subheader("Marker")
                 st.write("For all of digital maps")
@@ -278,7 +280,12 @@ if selected=="Interpretation":
                         
                         #Measure Control
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
-            
+            data_pre = pd.read_csv(upload_pre)
+            coordinate_data = data
+            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+            for i in range(len(coordinate_data)):
+                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
             folium_static(int_map, width=700)
             
         
