@@ -190,179 +190,185 @@ if selected=="Interpretation":
     number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
     number_of_tabs = int(number_of_tabs)
     int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
-    tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
-    for i in range(number_of_tabs):
-        with tabs[i]:
-            with st.container():
-                cols = st.columns([5,2])
-                with cols[1]:
-                    st.subheader("Set Box")
-                    uploaded_files = st.file_uploader(f"tab{i+1}", accept_multiple_files=True)
-                    with st.expander("Set your map", expanded=True):
-                        st.subheader("Marker")
-                        st.write("For all of digital maps")
-                        loc_num_lat1 = st.number_input(f"tab{i+1}")
-                        loc_num_long1 = st.number_input(f"tab{i+1}")
-                        st.subheader("Slider")
-                        st.write("Just for geology map")
-                        geology_map_slider1 = st.slider(f"tab{i+1}", 0.0,1.0)
+    with st.container():
+        cols = st.columns([5,2])
+        with cols[1]:
+            st.subheader("Set Box")
+            uploaded_files = st.file_uploader("Choose", accept_multiple_files=True)
+            with st.expander("Set your map", expanded=True):
+                st.subheader("Marker")
+                st.write("For all of digital maps")
+                loc_num_lat1 = st.number_input("Mark your latitude")
+                loc_num_long1 = st.number_input("Mark your longitude")
+                st.subheader("Slider")
+                st.write("Just for geology map")
+                geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
 
-                    
-                
-        
-                with cols[0]:
-                    st.subheader("Digital Map")
-                    folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
-                    #base tile map
-                    Esri_Satellite = folium.TileLayer(
-                                                                            tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-                                                                            attr = 'Esri',
-                                                                            name = 'Esri Satellite',
-                                                                            overlay = True,
-                                                                            control = True
-                                                                            ).add_to(int_map)
-                    Google_Satellite_Hybrid =  folium.TileLayer(
-                                                                            tiles = 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
-                                                                            attr = 'Google',
-                                                                            name = 'Google Satellite',
-                                                                            overlay = True,
-                                                                            control = True
-                                                                            ).add_to(int_map)
-                    Google_Terrain = folium.TileLayer(
-                                                                            tiles = 'https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
-                                                                            attr = 'Google',
-                                                                            name = 'Google Terrain',
-                                                                            overlay = True,
-                                                                            control = True
-                                                                            ).add_to(int_map)
-                    Google_Satellite = folium.TileLayer(
-                                                                            tiles = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
-                                                                            attr = 'Google',
-                                                                            name = 'Google Satellite',
-                                                                            overlay = True,
-                                                                            control = True
-                                                                            ).add_to(int_map)
-                    Google_Maps = folium.TileLayer(
-                                                                            tiles = 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-                                                                            attr = 'Google',
-                                                                            name = 'Google Maps',
-                                                                            overlay = True,
-                                                                            control = True
-                                                                            ).add_to(int_map)
-
-                    m = folium.GeoJson(
-                                        name= 'Geology Map',
-                                        data = state_geo,
-                                        
-                                        style_function = lambda feature: {
-                                                                            'fillColor': get_color(feature),
-                                                                            'fillOpacity': geology_map_slider1,
-                                                                            'color' : 'black',
-                                                                            'weight' : 0,
-                                                                        }    
-                                                    ).add_to(int_map)
-                        #Layer control
-                    folium.LayerControl().add_to(int_map)
-                        
-                        #Fullscreeen
-                    plugins.Fullscreen().add_to(int_map)
-
-                        #Locate Control
-                    plugins.LocateControl().add_to(int_map)
-                        #Locate Control
-                                
-                                
-                                #Cursor Postion
-                    fmtr = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
-                    plugins.MousePosition(position='topright', separator=' | ', prefix="Mouse:",lat_formatter=fmtr, lng_formatter=fmtr).add_to(int_map)
-                                
-                                #Add the draw 
-                    plugins.Draw(export=True, filename='data.geojson', position='topleft', draw_options=None, edit_options=None).add_to(int_map)
-                                
-                                #Measure Control
-                    plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
-                    for uploaded_file in uploaded_files:
-                
-                        coordinate_data = pd.read_csv(uploaded_file)
-                        coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-                        coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-                        for i in range(len(coordinate_data)):
-                            folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
-                        st_folium(int_map, width=700)
             
-                    
+        
+   
+        with cols[0]:
+            st.subheader("Digital Map")
+            folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
+            #base tile map
+            Esri_Satellite = folium.TileLayer(
+                                                                    tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                                                                    attr = 'Esri',
+                                                                    name = 'Esri Satellite',
+                                                                    overlay = True,
+                                                                    control = True
+                                                                    ).add_to(int_map)
+            Google_Satellite_Hybrid =  folium.TileLayer(
+                                                                    tiles = 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
+                                                                    attr = 'Google',
+                                                                    name = 'Google Satellite',
+                                                                    overlay = True,
+                                                                    control = True
+                                                                    ).add_to(int_map)
+            Google_Terrain = folium.TileLayer(
+                                                                    tiles = 'https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
+                                                                    attr = 'Google',
+                                                                    name = 'Google Terrain',
+                                                                    overlay = True,
+                                                                    control = True
+                                                                    ).add_to(int_map)
+            Google_Satellite = folium.TileLayer(
+                                                                    tiles = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+                                                                    attr = 'Google',
+                                                                    name = 'Google Satellite',
+                                                                    overlay = True,
+                                                                    control = True
+                                                                    ).add_to(int_map)
+            Google_Maps = folium.TileLayer(
+                                                                    tiles = 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+                                                                    attr = 'Google',
+                                                                    name = 'Google Maps',
+                                                                    overlay = True,
+                                                                    control = True
+                                                                    ).add_to(int_map)
+
+            m = folium.GeoJson(
+                                name= 'Geology Map',
+                                data = state_geo,
+                                
+                                style_function = lambda feature: {
+                                                                    'fillColor': get_color(feature),
+                                                                    'fillOpacity': geology_map_slider1,
+                                                                    'color' : 'black',
+                                                                    'weight' : 0,
+                                                                }    
+                                            ).add_to(int_map)
+                #Layer control
+            folium.LayerControl().add_to(int_map)
+                
+                #Fullscreeen
+            plugins.Fullscreen().add_to(int_map)
+
+                #Locate Control
+            plugins.LocateControl().add_to(int_map)
+                #Locate Control
+                        
+                        
+                        #Cursor Postion
+            fmtr = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
+            plugins.MousePosition(position='topright', separator=' | ', prefix="Mouse:",lat_formatter=fmtr, lng_formatter=fmtr).add_to(int_map)
+                        
+                        #Add the draw 
+            plugins.Draw(export=True, filename='data.geojson', position='topleft', draw_options=None, edit_options=None).add_to(int_map)
+                        
+                        #Measure Control
+            plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
+            for uploaded_file in uploaded_files:
+        
+                coordinate_data = pd.read_csv(uploaded_file)
+                coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+                coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+                for i in range(len(coordinate_data)):
+                    folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
+            st_folium(int_map, width=700)
+            
+        
+        
+        tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
+        for i in range(number_of_tabs):
+            with tabs[i]:
+                st.subheader("Resistivity")
+                
+                upload = st.file_uploader(f"tab{i+1}")
+                if upload is not None:
+                    data = pd.read_csv(upload)
                         #input
-                        filein = coordinate_data
-                        ncolours=15 
-                        colourscheme='Spectral_r' 
-                        #Resistivity
-                        rhos_min = filein['Resistivity'].min()
-                        rhos_max = filein['Resistivity'].max()
-                                
+                    filein = data  
+                    ncolours=15 
+                    colourscheme='Spectral_r' 
+                    #Resistivity
+                    rhos_min = filein['Resistivity'].min()
+                    rhos_max = filein['Resistivity'].max()
+                            
 
-                        clevels_res = np.logspace(np.log10(np.min(rhos_min)),np.log10(np.max(rhos_max)),num=ncolours)
-                        fig, axes_res = plt.subplots( nrows=2, sharex=False, squeeze=True, sharey=True)
+                    clevels_res = np.logspace(np.log10(np.min(rhos_min)),np.log10(np.max(rhos_max)),num=ncolours)
+                    fig, axes_res = plt.subplots( nrows=2, sharex=False, squeeze=True, sharey=True)
 
-                        for ax in axes_res:
-                            x=filein['X']
-                            z=filein['Depth']
-                            rho=filein['Resistivity']
-                            triang = mpl.tri.Triangulation(x, z)
-                            mask = mpl.tri.TriAnalyzer(triang).get_flat_tri_mask()
-                            triang.set_mask(mask)
+                    for ax in axes_res:
+                        x=filein['X']
+                        z=filein['Depth']
+                        rho=filein['Resistivity']
+                        triang = mpl.tri.Triangulation(x, z)
+                        mask = mpl.tri.TriAnalyzer(triang).get_flat_tri_mask()
+                        triang.set_mask(mask)
+                
                     
-                        
-                        #plt.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
-                        #cc=ax.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
-                            cc=ax.tricontourf(triang,rho,levels=clevels_res, norm=mpl.colors.LogNorm(vmin=rhos_min, vmax=rhos_max), cmap=colourscheme)
-                            ax.set_ylim(min(z)-2, max(z)+2)
-                            ax.set_xlim(0, max(x)+2)
+                    #plt.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
+                    #cc=ax.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
+                        cc=ax.tricontourf(triang,rho,levels=clevels_res, norm=mpl.colors.LogNorm(vmin=rhos_min, vmax=rhos_max), cmap=colourscheme)
+                        ax.set_ylim(min(z)-2, max(z)+2)
+                        ax.set_xlim(0, max(x)+2)
 
-                            axes_res[0].set_visible(False)
+                        axes_res[0].set_visible(False)
 
-                        clabels=[]
-                        for c in clevels_res: 
-                            clabels.append('%d' % c) 
-                        thecbar=fig.colorbar(cc, ax=axes_res,format='%.5f',ticks=clevels_res, orientation="horizontal")
-                        thecbar.ax.set_xticklabels(clabels, rotation=45)
+                    clabels=[]
+                    for c in clevels_res: 
+                        clabels.append('%d' % c) 
+                    thecbar=fig.colorbar(cc, ax=axes_res,format='%.5f',ticks=clevels_res, orientation="horizontal")
+                    thecbar.ax.set_xticklabels(clabels, rotation=45)
 
-                        #Conductivity
-                        cond_min = filein['Cond'].min()
-                        cond_max = filein['Cond'].max()
-                                
+                    #Conductivity
+                    cond_min = filein['Cond'].min()
+                    cond_max = filein['Cond'].max()
+                            
 
-                        clevels_cond = np.logspace(np.log10(np.min(cond_min)),np.log10(np.max(cond_max)),num=ncolours)
-                        fig_cond, axes_cond = plt.subplots( nrows=2, sharex=False, squeeze=True, sharey=True)
+                    clevels_cond = np.logspace(np.log10(np.min(cond_min)),np.log10(np.max(cond_max)),num=ncolours)
+                    fig_cond, axes_cond = plt.subplots( nrows=2, sharex=False, squeeze=True, sharey=True)
 
-                        for ax in axes_cond:
-                            x=filein['X']
-                            z=filein['Depth']
-                            rho=filein['Cond']
-                            triang = mpl.tri.Triangulation(x, z)
-                            mask = mpl.tri.TriAnalyzer(triang).get_flat_tri_mask()
-                            triang.set_mask(mask)
+                    for ax in axes_cond:
+                        x=filein['X']
+                        z=filein['Depth']
+                        rho=filein['Cond']
+                        triang = mpl.tri.Triangulation(x, z)
+                        mask = mpl.tri.TriAnalyzer(triang).get_flat_tri_mask()
+                        triang.set_mask(mask)
+                
                     
-                        
-                        #plt.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
-                        #cc=ax.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
-                            cc_cond=ax.tricontourf(triang,rho,levels=clevels_cond, norm=mpl.colors.LogNorm(vmin=cond_min, vmax=cond_max), cmap=colourscheme)
-                            ax.set_ylim(min(z)-2, max(z)+2)
-                            ax.set_xlim(0, max(x)+5)
+                    #plt.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
+                    #cc=ax.tricontourf(triang,rho,levels=clevels, cmap=colourscheme)
+                        cc_cond=ax.tricontourf(triang,rho,levels=clevels_cond, norm=mpl.colors.LogNorm(vmin=cond_min, vmax=cond_max), cmap=colourscheme)
+                        ax.set_ylim(min(z)-2, max(z)+2)
+                        ax.set_xlim(0, max(x)+5)
 
-                            axes_cond[0].set_visible(False)
+                        axes_cond[0].set_visible(False)
 
-                        clabels=[]
-                        for c in clevels_cond: 
-                            clabels.append('%2.4f' % c) 
-                        thecbar=fig_cond.colorbar(cc_cond, ax=axes_cond,format='%.5f',ticks=clevels_cond, orientation="horizontal")
-                        thecbar.ax.set_xticklabels(clabels, rotation=45)
-                                
-                        cols = st.columns(2)
-                        with cols[0]:
-                            st.pyplot(fig)
-                        with cols[1]:
-                            st.pyplot(fig_cond)
-                        
+                    clabels=[]
+                    for c in clevels_cond: 
+                        clabels.append('%2.4f' % c) 
+                    thecbar=fig_cond.colorbar(cc_cond, ax=axes_cond,format='%.5f',ticks=clevels_cond, orientation="horizontal")
+                    thecbar.ax.set_xticklabels(clabels, rotation=45)
+                            
+                    cols = st.columns(2)
+                    with cols[0]:
+                        st.pyplot(fig)
+                    with cols[1]:
+                        st.pyplot(fig_cond)
+                    
             
                    
 
