@@ -195,8 +195,6 @@ if selected=="Interpretation":
         with cols[1]:
             st.subheader("Set Box")
             uploaded_files = st.file_uploader("Choose", accept_multiple_files=True)
-            for uploaded_file in uploaded_files:
-                data = pd.read_csv(uploaded_file)
             with st.expander("Set your map", expanded=True):
                 st.subheader("Marker")
                 st.write("For all of digital maps")
@@ -280,7 +278,8 @@ if selected=="Interpretation":
                         
                         #Measure Control
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
-            data_int = pd.read_csv(uploaded_file)
+            for uploaded_file in uploaded_files:
+                data_int = pd.read_csv(uploaded_file)
             coordinate_data = data_int
             coordinate_data = coordinate_data.dropna(subset=['Latitude'])
             coordinate_data = coordinate_data.dropna(subset=['Longitude'])
