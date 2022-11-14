@@ -293,8 +293,8 @@ if selected=="Interpretation":
         for i in range(number_of_tabs):
             with tabs[i]:
                 st.subheader("Resistivity")
-                
-                for uploaded_file in uploaded_files:
+                upload = st.file_uploader(f"tab{i+1}")
+                if upload is not None:
                     data = pd.read_csv(uploaded_file)
                         #input
                     filein = data  
