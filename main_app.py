@@ -201,11 +201,11 @@ if selected=="Interpretation":
                     with st.expander("Set your map", expanded=True):
                         st.subheader("Marker")
                         st.write("For all of digital maps")
-                        loc_num_lat1 = st.number_input("Mark your latitude")
-                        loc_num_long1 = st.number_input("Mark your longitude")
+                        loc_num_lat1 = st.number_input(f"tab{i+1}")
+                        loc_num_long1 = st.number_input(f"tab{i+1}")
                         st.subheader("Slider")
                         st.write("Just for geology map")
-                        geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
+                        geology_map_slider1 = st.slider(f"tab{i+1}", 0.0,1.0)
 
                     
                 
