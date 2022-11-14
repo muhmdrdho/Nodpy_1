@@ -1,4 +1,5 @@
 from app.index_lib import *
+from branca.colormap import StepColormap
 
 st.set_page_config( layout="wide", initial_sidebar_state="expanded")
 sidebar_setting = st.markdown(
@@ -67,7 +68,7 @@ geojson = gpd.read_file(state_geo)
 geojson_states = list(geojson.SYMBOLS.values)
 final_df = geojson.merge(df_map, on="SYMBOLS")
 map_dict = df_map1.set_index('SYMBOLS')['IDX_FORMATION'].to_dict()
-color_scale = LinearColormap(['darkblue','brown','blue','green','skyblue','purple','pink','cadetblue',
+color_scale = StepColormap(['darkblue','brown','blue','green','skyblue','purple','pink','cadetblue',
                             'turquoise','blue','orange','yellow','seagreen','red','maroon','midnightblue',
                             'aquamarine','azure','navy','teal','beige','darkgreen',], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
 def get_color(feature):
