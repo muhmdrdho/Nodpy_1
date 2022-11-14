@@ -190,111 +190,111 @@ if selected=="Interpretation":
     number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
     number_of_tabs = int(number_of_tabs)
     int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
-    with st.container():
-        cols = st.columns([5,2])
-        with cols[1]:
-            st.subheader("Set Box")
-            uploaded_files = st.file_uploader(f"tab{i+1}", accept_multiple_files=True)
-            with st.expander("Set your map", expanded=True):
-                st.subheader("Marker")
-                st.write("For all of digital maps")
-                loc_num_lat1 = st.number_input("Mark your latitude")
-                loc_num_long1 = st.number_input("Mark your longitude")
-                st.subheader("Slider")
-                st.write("Just for geology map")
-                geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
+    tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
+    for i in range(number_of_tabs):
+        with tabs[i]:
+            with st.container():
+                cols = st.columns([5,2])
+                with cols[1]:
+                    st.subheader("Set Box")
+                    uploaded_files = st.file_uploader("Choose", accept_multiple_files=True)
+                    with st.expander("Set your map", expanded=True):
+                        st.subheader("Marker")
+                        st.write("For all of digital maps")
+                        loc_num_lat1 = st.number_input("Mark your latitude")
+                        loc_num_long1 = st.number_input("Mark your longitude")
+                        st.subheader("Slider")
+                        st.write("Just for geology map")
+                        geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
 
-            
+                    
+                
         
-   
-        with cols[0]:
-            st.subheader("Digital Map")
-            folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
-            #base tile map
-            Esri_Satellite = folium.TileLayer(
-                                                                    tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-                                                                    attr = 'Esri',
-                                                                    name = 'Esri Satellite',
-                                                                    overlay = True,
-                                                                    control = True
-                                                                    ).add_to(int_map)
-            Google_Satellite_Hybrid =  folium.TileLayer(
-                                                                    tiles = 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
-                                                                    attr = 'Google',
-                                                                    name = 'Google Satellite',
-                                                                    overlay = True,
-                                                                    control = True
-                                                                    ).add_to(int_map)
-            Google_Terrain = folium.TileLayer(
-                                                                    tiles = 'https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
-                                                                    attr = 'Google',
-                                                                    name = 'Google Terrain',
-                                                                    overlay = True,
-                                                                    control = True
-                                                                    ).add_to(int_map)
-            Google_Satellite = folium.TileLayer(
-                                                                    tiles = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
-                                                                    attr = 'Google',
-                                                                    name = 'Google Satellite',
-                                                                    overlay = True,
-                                                                    control = True
-                                                                    ).add_to(int_map)
-            Google_Maps = folium.TileLayer(
-                                                                    tiles = 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
-                                                                    attr = 'Google',
-                                                                    name = 'Google Maps',
-                                                                    overlay = True,
-                                                                    control = True
-                                                                    ).add_to(int_map)
+                with cols[0]:
+                    st.subheader("Digital Map")
+                    folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
+                    #base tile map
+                    Esri_Satellite = folium.TileLayer(
+                                                                            tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                                                                            attr = 'Esri',
+                                                                            name = 'Esri Satellite',
+                                                                            overlay = True,
+                                                                            control = True
+                                                                            ).add_to(int_map)
+                    Google_Satellite_Hybrid =  folium.TileLayer(
+                                                                            tiles = 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
+                                                                            attr = 'Google',
+                                                                            name = 'Google Satellite',
+                                                                            overlay = True,
+                                                                            control = True
+                                                                            ).add_to(int_map)
+                    Google_Terrain = folium.TileLayer(
+                                                                            tiles = 'https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
+                                                                            attr = 'Google',
+                                                                            name = 'Google Terrain',
+                                                                            overlay = True,
+                                                                            control = True
+                                                                            ).add_to(int_map)
+                    Google_Satellite = folium.TileLayer(
+                                                                            tiles = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+                                                                            attr = 'Google',
+                                                                            name = 'Google Satellite',
+                                                                            overlay = True,
+                                                                            control = True
+                                                                            ).add_to(int_map)
+                    Google_Maps = folium.TileLayer(
+                                                                            tiles = 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+                                                                            attr = 'Google',
+                                                                            name = 'Google Maps',
+                                                                            overlay = True,
+                                                                            control = True
+                                                                            ).add_to(int_map)
 
-            m = folium.GeoJson(
-                                name= 'Geology Map',
-                                data = state_geo,
+                    m = folium.GeoJson(
+                                        name= 'Geology Map',
+                                        data = state_geo,
+                                        
+                                        style_function = lambda feature: {
+                                                                            'fillColor': get_color(feature),
+                                                                            'fillOpacity': geology_map_slider1,
+                                                                            'color' : 'black',
+                                                                            'weight' : 0,
+                                                                        }    
+                                                    ).add_to(int_map)
+                        #Layer control
+                    folium.LayerControl().add_to(int_map)
+                        
+                        #Fullscreeen
+                    plugins.Fullscreen().add_to(int_map)
+
+                        #Locate Control
+                    plugins.LocateControl().add_to(int_map)
+                        #Locate Control
                                 
-                                style_function = lambda feature: {
-                                                                    'fillColor': get_color(feature),
-                                                                    'fillOpacity': geology_map_slider1,
-                                                                    'color' : 'black',
-                                                                    'weight' : 0,
-                                                                }    
-                                            ).add_to(int_map)
-                #Layer control
-            folium.LayerControl().add_to(int_map)
+                                
+                                #Cursor Postion
+                    fmtr = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
+                    plugins.MousePosition(position='topright', separator=' | ', prefix="Mouse:",lat_formatter=fmtr, lng_formatter=fmtr).add_to(int_map)
+                                
+                                #Add the draw 
+                    plugins.Draw(export=True, filename='data.geojson', position='topleft', draw_options=None, edit_options=None).add_to(int_map)
+                                
+                                #Measure Control
+                    plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
+                    for uploaded_file in uploaded_files:
                 
-                #Fullscreeen
-            plugins.Fullscreen().add_to(int_map)
-
-                #Locate Control
-            plugins.LocateControl().add_to(int_map)
-                #Locate Control
-                        
-                        
-                        #Cursor Postion
-            fmtr = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
-            plugins.MousePosition(position='topright', separator=' | ', prefix="Mouse:",lat_formatter=fmtr, lng_formatter=fmtr).add_to(int_map)
-                        
-                        #Add the draw 
-            plugins.Draw(export=True, filename='data.geojson', position='topleft', draw_options=None, edit_options=None).add_to(int_map)
-                        
-                        #Measure Control
-            plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
-            for uploaded_file in uploaded_files:
-        
-                coordinate_data = pd.read_csv(uploaded_file)
-                coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-                coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-                for i in range(len(coordinate_data)):
-                    folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
-            st_folium(int_map, width=700)
+                        coordinate_data = pd.read_csv(uploaded_file)
+                        coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+                        coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+                        for i in range(len(coordinate_data)):
+                            folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
+                    st_folium(int_map, width=700)
             
         
         
-        tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
-        for i in range(number_of_tabs):
-            with tabs[i]:
-                st.subheader("Resistivity")
+        
                 
-                if uploaded_file is not None:
+                
                     data = pd.read_csv(uploaded_file)
                         #input
                     filein = data  
