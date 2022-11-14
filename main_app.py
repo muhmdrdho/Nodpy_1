@@ -189,7 +189,6 @@ if selected=="Interpretation":
     st.markdown("---")
     number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
     number_of_tabs = int(number_of_tabs)
-    tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
     int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     with st.container():
         cols = st.columns([5,2])
@@ -281,21 +280,16 @@ if selected=="Interpretation":
                         
                         #Measure Control
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
-            coordinate_data = data
-            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-            for i in range(len(coordinate_data)):
-                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
+            
         
             st_folium(int_map, width=700)
         
         
-    for i in range(number_of_tabs):
-        with tabs[i]:
-            st.subheader("Resistivity")
-            upload = st.file_uploader("choose")
-            if upload is not None:
-                data = pd.read_csv(upload)
+        tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
+        for i in range(number_of_tabs):
+            with tabs[i]:
+                st.subheader("Resistivity")
+                
                 #input
                 filein = data  
                 ncolours=15 
