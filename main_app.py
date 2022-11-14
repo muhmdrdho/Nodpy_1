@@ -280,8 +280,8 @@ if selected=="Interpretation":
                         
                         #Measure Control
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
-            data_pre = pd.read_csv(upload_pre)
-            coordinate_data = data
+            data_int = pd.read_csv(uploaded_file)
+            coordinate_data = data_int
             coordinate_data = coordinate_data.dropna(subset=['Latitude'])
             coordinate_data = coordinate_data.dropna(subset=['Longitude'])
             for i in range(len(coordinate_data)):
