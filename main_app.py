@@ -275,7 +275,7 @@ if selected=="Interpretation":
                         
                         #Add the draw 
             plugins.Draw(export=True, filename='data.geojson', position='topleft', draw_options=None, edit_options=None).add_to(int_map)
-                        
+            folium.GeoJsonTooltip(['SYMBOLS', 'CLASS_LITH'], sticky=True).add_to(m)         
                         #Measure Control
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
             for uploaded_file in uploaded_files:
