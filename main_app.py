@@ -280,7 +280,7 @@ if selected=="Interpretation":
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
             
         
-            st_folium(int_map, width=700)
+            
         
         
         tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
@@ -362,11 +362,13 @@ if selected=="Interpretation":
                     with cols[1]:
                         st.pyplot(fig_cond)
 
+        with cols[0]:
             coordinate_data = data
             coordinate_data = coordinate_data.dropna(subset=['Latitude'])
             coordinate_data = coordinate_data.dropna(subset=['Longitude'])
             for i in range(len(coordinate_data)):
-                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)        
+                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map) 
+            st_folium(int_map, width=700)       
 
 
     
