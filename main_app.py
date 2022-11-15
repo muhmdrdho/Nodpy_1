@@ -371,6 +371,9 @@ if selected=="Interpretation":
                         st.pyplot(fig)
                     with cols[1]:
                         st.pyplot(fig_cond)
+
+                    with st.container():
+                        AgGrid(data)
                     
             
                    
