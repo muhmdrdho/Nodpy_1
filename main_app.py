@@ -397,8 +397,8 @@ if selected=="Interpretation":
                         with cols[1]:
                             res_value = data
                             res_value_x = data['X']
-                            res_value_y = data[['X','Resistivity','Cond']]
-                            st.line_chart(data=res_value_y, x=res_value_y['X'], y=res_value_y['Resistivity','Cond'])
+                            res_value_y = data[['Resistivity','Cond']]
+                            st.line_chart(data=res_value_y)
                     with st.container():
                         
                         AgGrid(data)
