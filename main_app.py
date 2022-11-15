@@ -375,7 +375,8 @@ if selected=="Interpretation":
                         st.markdown("""
                                     <h3>Resistivity</h3>
                                     """, unsafe_allow_html=True)
-                        st.pyplot(fig)
+                        fig_html = mpld3.fig_to_html(fig)
+                        components.html(fig_html)
                     with cols[1]:
                         st.markdown("""
                                     <h3>Conductivity</h3>
