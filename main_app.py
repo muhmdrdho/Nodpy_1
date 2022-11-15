@@ -312,7 +312,7 @@ if selected=="Interpretation":
                     rhos_max = filein['Resistivity'].max()
                             
 
-                    clevels_res = np.logspace(np.log10(np.min(rhos_min)),np.log10(np.max(rhos_max)),num=ncolours)
+                    clevels_res = np.logspace(np.log10(np.min(rhos_min)),np.log10(np.max(rhos_max)),num=number_scale_of_bar)
                     fig, axes_res = plt.subplots( nrows=2, sharex=False, squeeze=True, sharey=True)
 
                     for ax in axes_res:
@@ -343,7 +343,7 @@ if selected=="Interpretation":
                     cond_max = filein['Cond'].max()
                             
 
-                    clevels_cond = np.logspace(np.log10(np.min(cond_min)),np.log10(np.max(cond_max)),num=ncolours)
+                    clevels_cond = np.logspace(np.log10(np.min(cond_min)),np.log10(np.max(cond_max)),num=number_scale_of_bar)
                     fig_cond, axes_cond = plt.subplots( nrows=2, sharex=False, squeeze=True, sharey=True)
 
                     for ax in axes_cond:
