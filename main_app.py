@@ -373,7 +373,14 @@ if selected=="Interpretation":
                         st.pyplot(fig)
                     with cols[1]:
                         st.pyplot(fig_cond)
+                    with st.container():
+                        datum_file = data
+                        datum_file_x = datum_file["X"]
+                        datum_file_y = datum_file["Depth"]
 
+
+                        datum_fig, ax = plt.subplots()
+                        ax.plot(datum_file_x, datum_file_y ,"o")
                     with st.container():
                         
                         AgGrid(data)
