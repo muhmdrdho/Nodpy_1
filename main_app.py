@@ -195,6 +195,17 @@ if selected=="Interpretation":
     int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     with st.container():
         cols = st.columns([5,2])
+        with cols[1]:
+            st.subheader("Set Box")
+            uploaded_files = st.file_uploader("Choose", accept_multiple_files=True)
+            with st.expander("Set your map", expanded=True):
+                st.subheader("Marker")
+                st.write("For all of digital maps")
+                loc_num_lat1 = st.number_input("Mark your latitude")
+                loc_num_long1 = st.number_input("Mark your longitude")
+                st.subheader("Slider")
+                st.write("Just for geology map")
+                geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
         
 
     tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
@@ -274,59 +285,14 @@ if selected=="Interpretation":
                 thecbar=fig_cond.colorbar(cc_cond, ax=axes_cond,format='%.5f',ticks=clevels_cond, orientation="horizontal")
                 thecbar.ax.set_xticklabels(clabels, rotation=45)
 
-                st.subheader("Electrical Resistivity Tomography")      
-                cols = st.columns(2)
-                with cols[0]:
-                    st.markdown("""
-                                    <h3>Resistivity</h3>
-                                    """, unsafe_allow_html=True)
-                    st.pyplot(fig)
-                with cols[1]:
-                    st.markdown("""
-                                    <h3>Conductivity</h3>
-                                    """, unsafe_allow_html=True)
-                    st.pyplot(fig_cond)
-                    
-                with st.container():
-                    cols = st.columns(2)
-                    with cols[0]:
-                            
-                        datum_file = data
-                        datum_file_x = datum_file["X"]
-                        datum_file_y = datum_file["Depth"]
+                
+                coordinate_data = data
+                coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+                coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+                for i in range(len(coordinate_data)):
+                    folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
 
-
-                        datum_fig, ax = plt.subplots()
-                        ax.plot(datum_file_x, datum_file_y ,"o")
-                        st.pyplot(datum_fig)
-                    with cols[1]:
-                        res_value = data
-                        res_value_x = data[['Resistivity']]
-                        res_value_y = data[['Cond']]
-                        res_value_fig, axres = plt.subplots(2,1)
-                        axres[0].plot(res_value_x)
-                        axres[0].grid(True)
-                        axres[1].plot(res_value_y)
-                        axres[1].grid(True)
-                        st.pyplot(res_value_fig)
-                        AgGrid(data)
-                    coordinate_data = data
-                    coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-                    coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-                    for i in range(len(coordinate_data)):
-                        folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
-
-        with cols[1]:
-            st.subheader("Set Box")
-            uploaded_files = st.file_uploader("Choose", accept_multiple_files=True)
-            with st.expander("Set your map", expanded=True):
-                st.subheader("Marker")
-                st.write("For all of digital maps")
-                loc_num_lat1 = st.number_input("Mark your latitude")
-                loc_num_long1 = st.number_input("Mark your longitude")
-                st.subheader("Slider")
-                st.write("Just for geology map")
-                geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
+        
         
    
         with cols[0]:
@@ -406,6 +372,44 @@ if selected=="Interpretation":
         
             
             st_folium(int_map, width=700)
+
+        with tabs[i]:
+            st.subheader("Electrical Resistivity Tomography")      
+            cols = st.columns(2)
+            with cols[0]:
+                st.markdown("""
+                                    <h3>Resistivity</h3>
+                                    """, unsafe_allow_html=True)
+                st.pyplot(fig)
+            with cols[1]:
+                st.markdown("""
+                                    <h3>Conductivity</h3>
+                                    """, unsafe_allow_html=True)
+                st.pyplot(fig_cond)
+                    
+            with st.container():
+                cols = st.columns(2)
+                with cols[0]:
+                            
+                    datum_file = data
+                    datum_file_x = datum_file["X"]
+                    datum_file_y = datum_file["Depth"]
+
+
+                    datum_fig, ax = plt.subplots()
+                    ax.plot(datum_file_x, datum_file_y ,"o")
+                    st.pyplot(datum_fig)
+                with cols[1]:
+                    res_value = data
+                    res_value_x = data[['Resistivity']]
+                    res_value_y = data[['Cond']]
+                    res_value_fig, axres = plt.subplots(2,1)
+                    axres[0].plot(res_value_x)
+                    axres[0].grid(True)
+                    axres[1].plot(res_value_y)
+                    axres[1].grid(True)
+                    st.pyplot(res_value_fig)
+                    AgGrid(data)
             
         
         
