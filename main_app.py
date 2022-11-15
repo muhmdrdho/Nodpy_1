@@ -397,7 +397,7 @@ if selected=="Interpretation":
                         with cols[1]:
                             res_value = data
                             res_value_x = data['X']
-                            res_value_y = data[['Resistivity','Cond']]
+                            res_value_y = data[['Cond']]
                             st.line_chart(data=res_value_y)
                     with st.container():
                         
