@@ -398,7 +398,7 @@ if selected=="Interpretation":
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
             
         
-            coordinate_data = pd.read_csv(upload)
+            coordinate_data = data
             coordinate_data = coordinate_data.dropna(subset=['Latitude'])
             coordinate_data = coordinate_data.dropna(subset=['Longitude'])
             for i in range(len(coordinate_data)):
