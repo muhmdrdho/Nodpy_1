@@ -192,7 +192,7 @@ if selected=="Interpretation":
     st.markdown("---")
     number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
     number_of_tabs = int(number_of_tabs)
-    
+    int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     with st.container():
         cols = st.columns([5,2])
         
@@ -332,7 +332,7 @@ if selected=="Interpretation":
         with cols[0]:
             
             st.subheader("Digital Map")
-            int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
+            
             folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
             #base tile map
             Esri_Satellite = folium.TileLayer(
