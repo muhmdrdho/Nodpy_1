@@ -281,13 +281,9 @@ if selected=="Interpretation":
             folium.GeoJsonTooltip(['SYMBOLS', 'CLASS_LITH'], sticky=True).add_to(m)         
                         #Measure Control
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
-            for uploaded_file in uploaded_files:
+            #for uploaded_file in uploaded_files:
         
-                coordinate_data = pd.read_csv(uploaded_file)
-                coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-                coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-                for i in range(len(coordinate_data)):
-                    folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
+                
             st_folium(int_map, width=700)
             
         
@@ -368,6 +364,11 @@ if selected=="Interpretation":
                         clabels.append('%2.4f' % c) 
                     thecbar=fig_cond.colorbar(cc_cond, ax=axes_cond,format='%.5f',ticks=clevels_cond, orientation="horizontal")
                     thecbar.ax.set_xticklabels(clabels, rotation=45)
+                    coordinate_data = pd.read_csv(upload)
+                    coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+                    coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+                    for i in range(len(coordinate_data)):
+                        folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
 
                     st.subheader("Electrical Resistivity Tomography")      
                     cols = st.columns(2)
@@ -375,8 +376,7 @@ if selected=="Interpretation":
                         st.markdown("""
                                     <h3>Resistivity</h3>
                                     """, unsafe_allow_html=True)
-                        fig_html = mpld3.fig_to_html(fig)
-                        components.html(fig_html)
+                        st.pyplot(fig)
                     with cols[1]:
                         st.markdown("""
                                     <h3>Conductivity</h3>
