@@ -381,15 +381,19 @@ if selected=="Interpretation":
                                     <h3>Conductivity</h3>
                                     """, unsafe_allow_html=True)
                         st.pyplot(fig_cond)
+                    
                     with st.container():
-                        datum_file = data
-                        datum_file_x = datum_file["X"]
-                        datum_file_y = datum_file["Depth"]
+                        cols = st.columns(2)
+                        with cols[0]:
+                            
+                            datum_file = data
+                            datum_file_x = datum_file["X"]
+                            datum_file_y = datum_file["Depth"]
 
 
-                        datum_fig, ax = plt.subplots()
-                        ax.plot(datum_file_x, datum_file_y ,"o")
-                        st.pyplot(datum_fig)
+                            datum_fig, ax = plt.subplots()
+                            ax.plot(datum_file_x, datum_file_y ,"o")
+                            st.pyplot(datum_fig)
                     with st.container():
                         
                         AgGrid(data)
