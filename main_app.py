@@ -394,6 +394,11 @@ if selected=="Interpretation":
                             datum_fig, ax = plt.subplots()
                             ax.plot(datum_file_x, datum_file_y ,"o")
                             st.pyplot(datum_fig)
+                        with cols[1]:
+                            res_value = data
+                            res_value_x = data['X']
+                            res_value_y = data[['X','Resistivity','Cond']]
+                            st.line_chart(data=res_value_y, x=res_value_y['X'], y=res_value_y['Resistivity','Cond'])
                     with st.container():
                         
                         AgGrid(data)
