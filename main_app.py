@@ -381,6 +381,7 @@ if selected=="Interpretation":
 
                         datum_fig, ax = plt.subplots()
                         ax.plot(datum_file_x, datum_file_y ,"o")
+                        st.pyplot(datum_fig)
                     with st.container():
                         
                         AgGrid(data)
