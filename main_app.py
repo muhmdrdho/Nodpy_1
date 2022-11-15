@@ -298,29 +298,29 @@ if selected=="Interpretation":
                     st.pyplot(fig_cond)
 
                 with st.expander(f"tab{i+1}"):
-                    with st.container():
-                        cols = st.columns(2)
-                        with cols[0]:
+                    
+                    cols = st.columns(2)
+                    with cols[0]:
                                     
-                            datum_file = data
-                            datum_file_x = datum_file["X"]
-                            datum_file_y = datum_file["Depth"]
+                        datum_file = data
+                        datum_file_x = datum_file["X"]
+                        datum_file_y = datum_file["Depth"]
 
 
-                            datum_fig, ax = plt.subplots()
-                            ax.plot(datum_file_x, datum_file_y ,"o")
-                            st.pyplot(datum_fig)
-                        with cols[1]:
-                            res_value = data
-                            res_value_x = data[['Resistivity']]
-                            res_value_y = data[['Cond']]
-                            res_value_fig, axres = plt.subplots(2,1)
-                            axres[0].plot(res_value_x)
-                            axres[0].grid(True)
-                            axres[1].plot(res_value_y)
-                            axres[1].grid(True)
-                            st.pyplot(res_value_fig)
-                            AgGrid(data)
+                        datum_fig, ax = plt.subplots()
+                        ax.plot(datum_file_x, datum_file_y ,"o")
+                        st.pyplot(datum_fig)
+                    with cols[1]:
+                        res_value = data
+                        res_value_x = data[['Resistivity']]
+                        res_value_y = data[['Cond']]
+                        res_value_fig, axres = plt.subplots(2,1)
+                        axres[0].plot(res_value_x)
+                        axres[0].grid(True)
+                        axres[1].plot(res_value_y)
+                        axres[1].grid(True)
+                        st.pyplot(res_value_fig)
+                        AgGrid(data)
                 coordinate_data = data
                 coordinate_data = coordinate_data.dropna(subset=['Latitude'])
                 coordinate_data = coordinate_data.dropna(subset=['Longitude'])
