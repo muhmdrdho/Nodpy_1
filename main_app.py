@@ -309,10 +309,12 @@ if selected=="Interpretation":
                         axres[1].plot(res_value_y)
                         axres[1].grid(True)
                         st.pyplot(res_value_fig)
-                            
-                    
-                        
                         AgGrid(data)
+                    coordinate_data = data
+                    coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+                    coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+                    for i in range(len(coordinate_data)):
+                        folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
 
         with cols[1]:
             st.subheader("Set Box")
@@ -402,11 +404,7 @@ if selected=="Interpretation":
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
             
         
-            coordinate_data = data
-            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-            for i in range(len(coordinate_data)):
-                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
+            
             st_folium(int_map, width=700)
             
         
