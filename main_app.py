@@ -375,8 +375,8 @@ if selected=="Interpretation":
                         st.pyplot(fig_cond)
 
                     with st.container():
-                        nameofdata = data.Name
-                        AgGrid(nameofdata)
+                        
+                        AgGrid(data)
                     
             
                    
