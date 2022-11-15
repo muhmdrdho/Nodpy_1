@@ -299,8 +299,9 @@ if selected=="Interpretation":
                 
                 upload = st.file_uploader(f"tab{i+1}")
                 
-                number_scale_of_bar = st.number_input(f"tab{i+1}", min_value=12, max_value=25)
+                
                 if upload is not None:
+                    number_scale_of_bar = st.number_input(f"tab{i+1}", min_value=12, max_value=25)
                     data = pd.read_csv(upload)
                         #input
                     filein = data  
