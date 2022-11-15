@@ -64,7 +64,7 @@ pre_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoo
 df_map = pd.read_csv("app/assets/data/Geology+Jambi4.csv")
 df_map1 = df_map[["SYMBOLS","IDX_FORMATION"]]
 state_geo = "app/assets/data/Geology+Jambi.geojson"
-df_map2 = pd.read_csv("app/assets/data/GeologyJambieditcolor.csv")
+df_map2 = pd.read_csv("app/assets/data/clr_idx.csv")
 df_map3 = df_map2[["CLR_IDX"]]
 geojson = gpd.read_file(state_geo)
 geojson_states = list(geojson.SYMBOLS.values)
