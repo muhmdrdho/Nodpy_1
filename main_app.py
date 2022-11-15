@@ -396,13 +396,13 @@ if selected=="Interpretation":
             folium.GeoJsonTooltip(['SYMBOLS', 'CLASS_LITH'], sticky=True).add_to(m)         
                         #Measure Control
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
-            for uploaded_file in uploaded_files:
+            
         
-                coordinate_data = pd.read_csv(uploaded_file)
-                coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-                coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-                for i in range(len(coordinate_data)):
-                    folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
+            coordinate_data = pd.read_csv(upload)
+            coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+            coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+            for i in range(len(coordinate_data)):
+                folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
             st_folium(int_map, width=700)
             
         
