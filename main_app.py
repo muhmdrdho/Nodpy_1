@@ -298,11 +298,13 @@ if selected=="Interpretation":
                 st.subheader("Resistivity")
                 
                 upload = st.file_uploader(f"tab{i+1}")
+                
+                number_scale_of_bar = st.number_input(f"tab{i+1}", min_value=12, max_value=25)
                 if upload is not None:
                     data = pd.read_csv(upload)
                         #input
                     filein = data  
-                    ncolours=15 
+                    ncolours=number_scale_of_bar
                     colourscheme='Spectral_r' 
                     #Resistivity
                     rhos_min = filein['Resistivity'].min()
