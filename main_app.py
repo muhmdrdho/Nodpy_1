@@ -192,20 +192,10 @@ if selected=="Interpretation":
     st.markdown("---")
     number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
     number_of_tabs = int(number_of_tabs)
-    int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
+    
     with st.container():
         cols = st.columns([5,2])
-        with cols[1]:
-            st.subheader("Set Box")
-            uploaded_files = st.file_uploader("Choose", accept_multiple_files=True)
-            with st.expander("Set your map", expanded=True):
-                st.subheader("Marker")
-                st.write("For all of digital maps")
-                loc_num_lat1 = st.number_input("Mark your latitude")
-                loc_num_long1 = st.number_input("Mark your longitude")
-                st.subheader("Slider")
-                st.write("Just for geology map")
-                geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
+        
 
     tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
     for i in range(number_of_tabs):
@@ -320,13 +310,27 @@ if selected=="Interpretation":
                         axres[1].grid(True)
                         st.pyplot(res_value_fig)
                             
-                    with st.container():
+                    
                         
-                        AgGrid(data)   
+                        AgGrid(data)
+
+        with cols[1]:
+            st.subheader("Set Box")
+            uploaded_files = st.file_uploader("Choose", accept_multiple_files=True)
+            with st.expander("Set your map", expanded=True):
+                st.subheader("Marker")
+                st.write("For all of digital maps")
+                loc_num_lat1 = st.number_input("Mark your latitude")
+                loc_num_long1 = st.number_input("Mark your longitude")
+                st.subheader("Slider")
+                st.write("Just for geology map")
+                geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
         
    
         with cols[0]:
+            
             st.subheader("Digital Map")
+            int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
             folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
             #base tile map
             Esri_Satellite = folium.TileLayer(
