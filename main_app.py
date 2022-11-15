@@ -401,6 +401,7 @@ if selected=="Interpretation":
                             res_value_fig, axres = plt.subplots(2,1)
                             axres[0].plot(res_value_x)
                             axres[0].grid(True)
+                            axres[1].plot(res_value_y)
                             
                             st.pyplot(res_value_fig)
                             
