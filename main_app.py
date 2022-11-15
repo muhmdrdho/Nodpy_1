@@ -295,7 +295,7 @@ if selected=="Interpretation":
         tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
         for i in range(number_of_tabs):
             with tabs[i]:
-                st.subheader("Resistivity")
+                st.subheader("Data View")
                 
                 upload = st.file_uploader(f"tab{i+1}")
                 
@@ -371,8 +371,14 @@ if selected=="Interpretation":
                             
                     cols = st.columns(2)
                     with cols[0]:
+                        st.markdown("""
+                                    <h3>Resistivity</h3>
+                                    """, unsafe_allow_html=True)
                         st.pyplot(fig)
                     with cols[1]:
+                        st.markdown("""
+                                    <h3>Conductivity</h3>
+                                    """, unsafe_allow_html=True)
                         st.pyplot(fig_cond)
                     with st.container():
                         datum_file = data
