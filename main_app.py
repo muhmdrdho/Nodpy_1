@@ -299,8 +299,8 @@ if selected=="Interpretation":
 
                 with st.expander(f"tab{i+1}"):
                     
-                    cols = st.columns(2)
-                    with cols[0]:
+                    cols2 = st.columns(2)
+                    with cols2[0]:
                                     
                         datum_file = data
                         datum_file_x = datum_file["X"]
@@ -310,7 +310,7 @@ if selected=="Interpretation":
                         datum_fig, ax = plt.subplots()
                         ax.plot(datum_file_x, datum_file_y ,"o")
                         st.pyplot(datum_fig)
-                    with cols[1]:
+                    with cols2[1]:
                         res_value = data
                         res_value_x = data[['Resistivity']]
                         res_value_y = data[['Cond']]
