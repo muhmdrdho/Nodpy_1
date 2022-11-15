@@ -396,9 +396,10 @@ if selected=="Interpretation":
                             st.pyplot(datum_fig)
                         with cols[1]:
                             res_value = data
-                            res_value_x = data['X']
+                            res_value_x = data[['Resistivity']]
                             res_value_y = data[['Cond']]
-                            st.line_chart(data=res_value_y)
+                            st.line_chart(x=res_value_x['Resistivity'])
+                            
                     with st.container():
                         
                         AgGrid(data)
