@@ -190,8 +190,7 @@ if selected=="Preacquisition":
 if selected=="Interpretation":
     st.header("Interpretation")
     st.markdown("---")
-    number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
-    number_of_tabs = int(number_of_tabs)
+    
     int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     with st.container():
         cols = st.columns([5,2])
@@ -207,7 +206,8 @@ if selected=="Interpretation":
                 st.write("Just for geology map")
                 geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
         
-
+    number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
+    number_of_tabs = int(number_of_tabs)
     tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
     for i in range(number_of_tabs):
         with tabs[i]:
