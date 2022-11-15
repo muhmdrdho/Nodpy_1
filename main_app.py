@@ -398,8 +398,10 @@ if selected=="Interpretation":
                             res_value = data
                             res_value_x = data[['Resistivity']]
                             res_value_y = data[['Cond']]
-                            st.line_chart(res_value_y)
-                            st.line_chart(res_value_x)
+                            res_value_fig, axres = plt.subplots(2,1)
+                            axres[0].plot(res_value_x, res_value_y)
+                            axres[0].grid(True)
+                            st.pyplot(res_value_fig)
                             
                     with st.container():
                         
