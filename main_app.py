@@ -368,7 +368,8 @@ if selected=="Interpretation":
                         clabels.append('%2.4f' % c) 
                     thecbar=fig_cond.colorbar(cc_cond, ax=axes_cond,format='%.5f',ticks=clevels_cond, orientation="horizontal")
                     thecbar.ax.set_xticklabels(clabels, rotation=45)
-                            
+
+                    st.subheader("Electrical Resistivity Tomography")      
                     cols = st.columns(2)
                     with cols[0]:
                         st.markdown("""
