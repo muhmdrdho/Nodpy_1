@@ -402,7 +402,7 @@ if selected=="Interpretation":
                             axres[0].plot(res_value_x)
                             axres[0].grid(True)
                             axres[1].plot(res_value_y)
-                            axres[1].plot(True)
+                            axres[1].grid(True)
                             st.pyplot(res_value_fig)
                             
                     with st.container():
