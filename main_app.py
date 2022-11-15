@@ -190,7 +190,6 @@ if selected=="Preacquisition":
 if selected=="Interpretation":
     st.header("Interpretation")
     st.markdown("---")
-    
     int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     with st.container():
         cols = st.columns([5,2])
