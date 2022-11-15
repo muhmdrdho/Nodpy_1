@@ -188,13 +188,10 @@ if selected=="Preacquisition":
         st_folium(pre_map, width=700)
 
 if selected=="Interpretation":
-    number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
-    number_of_tabs = int(number_of_tabs)
-    tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
-    
     st.header("Interpretation")
     st.markdown("---")
-    
+    number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
+    number_of_tabs = int(number_of_tabs)
     int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     with st.container():
         cols = st.columns([5,2])
@@ -295,6 +292,7 @@ if selected=="Interpretation":
             
         
         
+        tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
         for i in range(number_of_tabs):
             with tabs[i]:
                 st.subheader("Data View")
