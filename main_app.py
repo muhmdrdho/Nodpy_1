@@ -80,7 +80,6 @@ def get_color(feature):
     else:
         return color_scale(value)
 
-
 if selected=="Preacquisition":
     st.header("Preacquisition")
     st.markdown("---")
@@ -193,11 +192,6 @@ if selected=="Interpretation":
     st.markdown("---")
     number_of_tabs = st.sidebar.number_input("Number of Tabs", min_value=1, max_value=16, value=1)
     number_of_tabs = int(number_of_tabs)
-    tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
-    for i in range(number_of_tabs):
-        with tabs[i]:
-            st.subheader("Data View")
-            uploaded_files = st.file_uploader(f"tab{i+1}")
     int_map = folium.Map(tiles='StamenTerrain',location=[-1.609972, 103.607254], zoom_start=6)
     with st.container():
         cols = st.columns([5,2])
@@ -288,23 +282,27 @@ if selected=="Interpretation":
                         #Measure Control
             plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
             for uploaded_file in uploaded_files:
-                data_int = pd.read_csv(uploaded_file)
-                coordinate_data = data_int
+        
+                coordinate_data = pd.read_csv(uploaded_file)
                 coordinate_data = coordinate_data.dropna(subset=['Latitude'])
                 coordinate_data = coordinate_data.dropna(subset=['Longitude'])
                 for i in range(len(coordinate_data)):
                     folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
-                
             st_folium(int_map, width=700)
             
         
         
-        
+        tabs = st.tabs([f"tab{i+1}" for i in range(number_of_tabs)])
+        for i in range(number_of_tabs):
+            with tabs[i]:
+                st.subheader("Data View")
                 
-            with tabs[i]:  
-                for uploaded_file in uploaded_files:
+                upload = st.file_uploader(f"tab{i+1}")
+                
+                
+                if upload is not None:
                     number_scale_of_bar = st.number_input(f"tab{i+1}", min_value=12, max_value=25)
-                    data = pd.read_csv(uploaded_file)
+                    data = pd.read_csv(upload)
                         #input
                     filein = data  
                     ncolours=number_scale_of_bar
@@ -370,7 +368,6 @@ if selected=="Interpretation":
                         clabels.append('%2.4f' % c) 
                     thecbar=fig_cond.colorbar(cc_cond, ax=axes_cond,format='%.5f',ticks=clevels_cond, orientation="horizontal")
                     thecbar.ax.set_xticklabels(clabels, rotation=45)
-                    
 
                     st.subheader("Electrical Resistivity Tomography")      
                     cols = st.columns(2)
