@@ -211,11 +211,11 @@ if selected=="Interpretation":
         with tabs[i]:
             st.subheader("Data View")
                 
-            upload = st.file_uploader(f"tab{i+1}")
+            upload = st.file_uploader(f"Choose your file {i+1}")
                 
                 
             if upload is not None:
-                number_scale_of_bar = st.number_input(f"tab{i+1}", min_value=12, max_value=25)
+                number_scale_of_bar = st.number_input(f"Set Your Gradient{i+1}", min_value=12, max_value=25)
                 data = pd.read_csv(upload)
                         #input
                 filein = data  
@@ -320,7 +320,7 @@ if selected=="Interpretation":
                         
                         axres[1].plot(res_value_y)
                         axres[1].grid(True)
-                        axres[1].set_xlabel("X")
+                        axres[1].set_xlabel("Number of Data")
                         axres[1].set_ylabel("Conductivity")
                         st.pyplot(res_value_fig)
                     st.subheader("Data View") 
