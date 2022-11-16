@@ -296,7 +296,7 @@ if selected=="Interpretation":
                                         """, unsafe_allow_html=True)
                     st.pyplot(fig_cond)
 
-                with st.expander(f"File View{i+1}"):
+                with st.expander(f"File View{i+1}", expanded=True):
                     
                     cols2 = st.columns(2)
                     with cols2[0]:
@@ -317,7 +317,6 @@ if selected=="Interpretation":
                         st.subheader("Resistivity and Conductivity Graph")
                         axres[0].plot(res_value_x)
                         axres[0].grid(True)
-                        axres[0].set_xlabel("X")
                         axres[0].set_ylabel("Resistivity")
                         
                         axres[1].plot(res_value_y)
@@ -325,7 +324,7 @@ if selected=="Interpretation":
                         axres[1].set_xlabel("X")
                         axres[1].set_ylabel("Conductivity")
                         st.pyplot(res_value_fig)
-                        
+                    st.subheader("Data View") 
                     AgGrid(data)
                 coordinate_data = data
                 coordinate_data = coordinate_data.dropna(subset=['Latitude'])
