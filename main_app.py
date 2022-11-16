@@ -314,10 +314,10 @@ if selected=="Interpretation":
                         res_value_x = data[['Resistivity']]
                         res_value_y = data[['Cond']]
                         res_value_fig, axres = plt.subplots(2,1)
-                        st.subheader("Resistivity Graph")
+                        st.subheader("Resistivity and Conductivity Graph")
                         axres[0].plot(res_value_x)
                         axres[0].grid(True)
-                        st.subheader("Conductivity Graph")
+                        
                         axres[1].plot(res_value_y)
                         axres[1].grid(True)
                         st.pyplot(res_value_fig)
