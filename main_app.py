@@ -321,7 +321,8 @@ if selected=="Interpretation":
                         axres[1].plot(res_value_y)
                         axres[1].grid(True)
                         st.pyplot(res_value_fig)
-                        AgGrid(data)
+                        
+                    AgGrid(data)
                 coordinate_data = data
                 coordinate_data = coordinate_data.dropna(subset=['Latitude'])
                 coordinate_data = coordinate_data.dropna(subset=['Longitude'])
