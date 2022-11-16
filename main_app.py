@@ -195,7 +195,6 @@ if selected=="Interpretation":
         cols = st.columns([5,2])
         with cols[1]:
             st.subheader("Set Box")
-            uploaded_files = st.file_uploader("Choose", accept_multiple_files=True)
             with st.expander("Set your map", expanded=True):
                 st.subheader("Marker")
                 st.write("For all of digital maps")
