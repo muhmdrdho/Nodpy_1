@@ -317,9 +317,13 @@ if selected=="Interpretation":
                         st.subheader("Resistivity and Conductivity Graph")
                         axres[0].plot(res_value_x)
                         axres[0].grid(True)
+                        axres[0].set_xlabel("X")
+                        axres[0].set_ylabel("Resistivity")
                         
                         axres[1].plot(res_value_y)
                         axres[1].grid(True)
+                        axres[1].set_xlabel("X")
+                        axres[1].set_ylabel("Conductivity")
                         st.pyplot(res_value_fig)
                         
                     AgGrid(data)
