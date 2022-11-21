@@ -1,7 +1,7 @@
 from app.index_lib import *
 from branca.colormap import StepColormap
 
-st.set_page_config( layout="wide", initial_sidebar_state="expanded")
+st.set_page_config( layout="wide",page_title="Nodpy", initial_sidebar_state="expanded")
 sidebar_setting = st.markdown(
                                 """
                                 <style>
