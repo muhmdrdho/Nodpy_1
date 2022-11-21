@@ -414,7 +414,7 @@ if selected=="Interpretation":
 
         
 if selected == "About":
-    st.image('app/assets/logo/Nodpy2.png', use_column_width=True)
+    st.image('app/assets/logo/Nodpy2.png', width=700)
     st.markdown("<h3 style='text-align: center; color: black;'>nodpy is a python-based application with a streamlit container which is useful in processing resistivity geoelectrical data</h3>", unsafe_allow_html=True)
     
     with st.expander("See the updates!"):
