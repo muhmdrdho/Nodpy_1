@@ -185,7 +185,7 @@ if selected=="Preacquisition":
                     
                     #Measure Control
         plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(pre_map)
-        st_folium(pre_map, width=700)
+        folium_static(pre_map, width=700)
 
 if selected=="Interpretation":
     st.header("Interpretation")
@@ -410,7 +410,7 @@ if selected=="Interpretation":
             
         
             
-        st_folium(int_map, width=700)
+        folium_static(int_map, width=700)
 
         
 if selected == "About":
