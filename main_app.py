@@ -215,7 +215,7 @@ if selected=="Interpretation":
             upload = st.file_uploader(f"Choose your file {i+1}")
                 
                 
-            if upload is not None:
+            for uploaded in upload:
                 number_scale_of_bar = st.number_input(f"Set Your Gradient{i+1}", min_value=12, max_value=25)
                 data = pd.read_csv(upload)
                         #input
