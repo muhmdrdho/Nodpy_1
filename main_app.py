@@ -212,7 +212,7 @@ if selected=="Interpretation":
         with tabs[i]:
             st.subheader("Data View")
                 
-            upload = st.file_uploader(f"Choose your file {i+1}")
+            upload = st.file_uploader(f"Choose your file {i+1}",type="csv", accept_multiple_files=True)
                 
                 
             for uploaded in upload:
