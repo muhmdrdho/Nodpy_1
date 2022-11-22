@@ -416,8 +416,10 @@ if selected=="Interpretation":
         
 if selected == "About":
     with st.container():
-        logo = Image.open('app/assets/logo/Nodpy2.png')
-        st.image(logo, width=300)
+        cols4 = st.columns(3)
+        with cols4 [1]:
+            logo = Image.open('app/assets/logo/Nodpy2.png')
+            st.image(logo, width=300)
     
     st.markdown("<h3 style='text-align: center; color: black;'>nodpy is a python-based application with a streamlit container which is useful in processing resistivity geoelectrical data</h3>", unsafe_allow_html=True)
     
