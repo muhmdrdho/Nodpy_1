@@ -1,5 +1,6 @@
 from app.index_lib import *
 from branca.colormap import StepColormap
+from PIL import Image 
 
 st.set_page_config( layout="wide",page_title="Nodpy", initial_sidebar_state="expanded")
 sidebar_setting = st.markdown(
@@ -414,14 +415,19 @@ if selected=="Interpretation":
 
         
 if selected == "About":
-    st.image('app/assets/logo/Nodpy2.png', width=700)
+    logo = Image.open('app/assets/logo/Nodpy2.png')
+    st.image(logo, width=300)
     st.markdown("<h3 style='text-align: center; color: black;'>nodpy is a python-based application with a streamlit container which is useful in processing resistivity geoelectrical data</h3>", unsafe_allow_html=True)
     
     with st.expander("See the updates!"):
         st.write("""this is the newest version of software""")
         
     with st.expander("See how to do it!"):
-        st.write("""You just need the .csv data like in picture below""")
+        st.write("""1.You need data from Res2Dinv which contains information about distance, depth, resistivity and conductivity
+                    2. after you get it you have to put it in the data with the .csv extension and add the coordinates (Latitude, Longitude) if you have them
+                        an example you can see through the photo below
+                    3. and done! Your data has been displayed""")
+        AgGrid('app/assets/data/data.csv')
                     
             
             
