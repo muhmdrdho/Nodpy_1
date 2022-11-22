@@ -429,7 +429,8 @@ if selected == "About":
                     2. After you get it you have to put it in the data with the .csv extension and add the coordinates (Latitude, Longitude) if you have them
                         an example you can see through the photo below
                     """)
-        st.dataframe('app/assets/data/data.csv')
+        data1 = pd.read_csv('app/assets/data/data.csv')
+        st.table(data1)
         st.write("""
                     3. And done! Your data has been displayed""")
         
