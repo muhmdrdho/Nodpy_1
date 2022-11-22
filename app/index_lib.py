@@ -15,5 +15,4 @@ from streamlit_option_menu import option_menu
 import branca
 import branca.colormap as cm
 from branca.colormap import LinearColormap
-import hydralit_components as hc
-from st_card_component_2 import card_component
+

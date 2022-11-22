@@ -83,7 +83,7 @@ def get_color(feature):
 
 if selected=="Preacquisition":
     st.header("Preacquisition")
-    st.markdown("---")
+    
 
     cols = st.columns([5,2])
     with cols[1]:
