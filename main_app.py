@@ -415,9 +415,12 @@ if selected=="Interpretation":
 
         
 if selected == "About":
-    logo = Image.open('app/assets/logo/Nodpy2.png')
-    st.image(logo, width=300)
-    st.markdown("<h3 style='text-align: center; color: black;'>nodpy is a python-based application with a streamlit container which is useful in processing resistivity geoelectrical data</h3>", unsafe_allow_html=True)
+    cols4 = st.columns([1,2])
+    with cols4[0]:
+        logo = Image.open('app/assets/logo/Nodpy2.png')
+        st.image(logo, width=300)
+    with cols4[1]:
+        st.markdown("<h3 style='text-align: right; color: black;'>nodpy is a python-based application with a streamlit container which is useful in processing resistivity geoelectrical data</h3>", unsafe_allow_html=True)
     
     with st.expander("See the updates!"):
         st.write("""this is the newest version of software""")
@@ -427,7 +430,7 @@ if selected == "About":
                     """)
         st.write("""
                     2. After you get it you have to put it in the data with the .csv extension and add the coordinates (Latitude, Longitude) if you have them
-                        an example you can see through the photo below
+                        an example you can see through the photo below. if you doesnt have enough data you'll get N/A
                     """)
         data1 = pd.read_csv('app/assets/data/data.csv')
         st.table(data1)
