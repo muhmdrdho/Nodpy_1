@@ -423,11 +423,16 @@ if selected == "About":
         st.write("""this is the newest version of software""")
         
     with st.expander("See how to do it!"):
-        st.write("""1.You need data from Res2Dinv which contains information about distance, depth, resistivity and conductivity
-                    2. after you get it you have to put it in the data with the .csv extension and add the coordinates (Latitude, Longitude) if you have them
+        st.write("""1. You need data from Res2Dinv which contains information about distance, depth, resistivity and conductivity
+                    """)
+        st.write("""
+                    2. After you get it you have to put it in the data with the .csv extension and add the coordinates (Latitude, Longitude) if you have them
                         an example you can see through the photo below
-                    3. and done! Your data has been displayed""")
+                    """)
         st.dataframe('app/assets/data/data.csv')
+        st.write("""
+                    3. And done! Your data has been displayed""")
+        
                     
             
             
