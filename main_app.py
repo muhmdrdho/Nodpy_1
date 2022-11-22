@@ -427,7 +427,7 @@ if selected == "About":
                     2. after you get it you have to put it in the data with the .csv extension and add the coordinates (Latitude, Longitude) if you have them
                         an example you can see through the photo below
                     3. and done! Your data has been displayed""")
-        AgGrid('app/assets/data/data.csv')
+        st.dataframe('app/assets/data/data.csv')
                     
             
             
