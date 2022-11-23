@@ -331,8 +331,7 @@ if selected=="Interpretation":
             
         
             #base tile map
-        
-            
+           
         for uploaded_file in uploaded_files:
             st.subheader("Digital Map")
             with cols[1]:
