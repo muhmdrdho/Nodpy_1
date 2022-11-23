@@ -408,9 +408,9 @@ if selected=="Interpretation":
                         #Measure Control
         plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
             
-        
+        for uploaded_file in uploaded_files:
             
-        folium_static(int_map, width=700)
+            folium_static(int_map, width=700)
 
         
 if selected == "About":
