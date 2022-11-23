@@ -207,7 +207,10 @@ if selected=="Interpretation":
             for uploaded_file in uploaded_files:
                 
                 number_scale_of_bar = st.number_input(f"Set Your Gradient{i+1}", min_value=12, max_value=25)
-                data = pd.read_csv(uploaded_file)
+                try:
+                    data = pd.read_csv(uploaded_file)
+                except:
+                    st.error("Please check your data")
                         #input
                 filein = data  
                 ncolours=number_scale_of_bar
@@ -327,11 +330,7 @@ if selected=="Interpretation":
    
     with cols[0]:
             
-        
-            
-        
-            #base tile map
-           
+            #base tile map 
         for uploaded_file in uploaded_files:
             st.subheader("Digital Map")
             with cols[1]:
