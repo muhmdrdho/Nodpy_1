@@ -3,7 +3,7 @@ from branca.colormap import StepColormap
 from PIL import Image 
 
 st.set_page_config( layout="wide",page_title="Nodpy", initial_sidebar_state="expanded")
-st.info('This is a purely informational message', icon="ℹ️")
+st.warning('This is a warning', icon="⚠️")
 sidebar_setting = st.markdown(
                                 """
                                 <style>
