@@ -329,7 +329,7 @@ if selected=="Interpretation":
             
         
             
-        folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
+        
             #base tile map
         Esri_Satellite = folium.TileLayer(
                                                                     tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -411,6 +411,7 @@ if selected=="Interpretation":
                     st.subheader("Slider")
                     st.write("Just for geology map")
                     geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
+            folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
             folium_static(int_map, width=700)
 
         
