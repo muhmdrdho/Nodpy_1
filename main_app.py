@@ -212,9 +212,7 @@ if selected=="Interpretation":
         with tabs[i]:
             st.subheader("Data View")
                 
-            upload = st.file_uploader(f"Choose your file {i+1}",type="csv", accept_multiple_files=True)
-                
-                
+            upload = st.file_uploader(f"Choose your file {i+1}", accept_multiple_files=True)
             for uploaded in upload:
                 number_scale_of_bar = st.number_input(f"Set Your Gradient{i+1}", min_value=12, max_value=25)
                 data = pd.read_csv(upload)
