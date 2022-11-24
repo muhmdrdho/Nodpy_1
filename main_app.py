@@ -210,7 +210,7 @@ if selected=="Interpretation":
                 number_scale_of_bar = st.number_input(f"Set Your Gradient{i+1}", min_value=12, max_value=25)
                 try:
                     data = pd.read_csv(uploaded_file)
-                except:
+                except KeyError:
                     st.error("Please check your data")
                         #input
                 filein = data  
