@@ -335,8 +335,8 @@ if selected=="Interpretation":
                         for i in range(len(coordinate_data)):
                             folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
 
-                except KeyError:
-                    st.error("Please check your data")
+                    except KeyError:
+                        st.error("Please check your data")
                         #input
                 
                 
