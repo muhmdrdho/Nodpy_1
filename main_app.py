@@ -1,5 +1,4 @@
 from app.index_lib import *
-from google.cloud import firestore
 from branca.colormap import StepColormap
 from PIL import Image 
 
