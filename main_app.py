@@ -209,10 +209,11 @@ if selected=="Interpretation":
     for i in range(number_of_tabs):
         with tabs[i]:
             st.subheader("Data View")
-                
+
+            choose = st.selectbox(f"See what in our database {i+1}", dwrite["names"])   
             uploaded_files = st.file_uploader(f"Set Your Gradient{i+1}", accept_multiple_files=True)
             for uploaded_file in uploaded_files:
-                choose = st.selectbox(f"See what in our database {i+1}", dwrite["names"])
+                
                 #setting on your scale bar
                 number_scale_of_bar = st.number_input(f"Set Your Gradient{i+1}", min_value=12, max_value=25)
                 try:
