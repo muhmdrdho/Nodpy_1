@@ -281,59 +281,61 @@ if selected=="Interpretation":
                         clabels.append('%2.4f' % c) 
                     thecbar=fig_cond.colorbar(cc_cond, ax=axes_cond,format='%.5f',ticks=clevels_cond, orientation="horizontal")
                     thecbar.ax.set_xticklabels(clabels, rotation=45)
+
+                    st.subheader("Electrical Resistivity Tomography")      
+                    cols1 = st.columns(2)
+                    with cols1[0]:
+                        st.markdown("""
+                                            <h3>Resistivity</h3>
+                                            """, unsafe_allow_html=True)
+                        st.pyplot(fig)
+                    with cols1[1]:
+                        st.markdown("""
+                                            <h3>Conductivity</h3>
+                                            """, unsafe_allow_html=True)
+                        st.pyplot(fig_cond)
+
+                    with st.expander(f"File View{i+1}", expanded=True):
+                        
+                        cols2 = st.columns(2)
+                        with cols2[0]:
+                            st.subheader("Datum Point")         
+                            datum_file = data
+                            datum_file_x = datum_file["X"]
+                            datum_file_y = datum_file["Depth"]
+
+
+                            datum_fig, ax = plt.subplots()
+                            ax.plot(datum_file_x, datum_file_y ,"o")
+                            st.pyplot(datum_fig)
+                        with cols2[1]:
+                            res_value = data
+                            res_value_x = data[['Resistivity']]
+                            res_value_y = data[['Cond']]
+                            res_value_fig, axres = plt.subplots(2,1)
+                            st.subheader("Resistivity and Conductivity Graph")
+                            axres[0].plot(res_value_x)
+                            axres[0].grid(True)
+                            axres[0].set_ylabel("Resistivity")
+                            
+                            axres[1].plot(res_value_y)
+                            axres[1].grid(True)
+                            axres[1].set_xlabel("Number of Data")
+                            axres[1].set_ylabel("Conductivity")
+                            st.pyplot(res_value_fig)
+                        st.subheader("Data View") 
+                        AgGrid(data)
+                    coordinate_data = data
+                    coordinate_data = coordinate_data.dropna(subset=['Latitude'])
+                    coordinate_data = coordinate_data.dropna(subset=['Longitude'])
+                    for i in range(len(coordinate_data)):
+                        folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
+
                 except KeyError:
                     st.error("Please check your data")
                         #input
                 
-                st.subheader("Electrical Resistivity Tomography")      
-                cols1 = st.columns(2)
-                with cols1[0]:
-                    st.markdown("""
-                                        <h3>Resistivity</h3>
-                                        """, unsafe_allow_html=True)
-                    st.pyplot(fig)
-                with cols1[1]:
-                    st.markdown("""
-                                        <h3>Conductivity</h3>
-                                        """, unsafe_allow_html=True)
-                    st.pyplot(fig_cond)
-
-                with st.expander(f"File View{i+1}", expanded=True):
-                    
-                    cols2 = st.columns(2)
-                    with cols2[0]:
-                        st.subheader("Datum Point")         
-                        datum_file = data
-                        datum_file_x = datum_file["X"]
-                        datum_file_y = datum_file["Depth"]
-
-
-                        datum_fig, ax = plt.subplots()
-                        ax.plot(datum_file_x, datum_file_y ,"o")
-                        st.pyplot(datum_fig)
-                    with cols2[1]:
-                        res_value = data
-                        res_value_x = data[['Resistivity']]
-                        res_value_y = data[['Cond']]
-                        res_value_fig, axres = plt.subplots(2,1)
-                        st.subheader("Resistivity and Conductivity Graph")
-                        axres[0].plot(res_value_x)
-                        axres[0].grid(True)
-                        axres[0].set_ylabel("Resistivity")
-                        
-                        axres[1].plot(res_value_y)
-                        axres[1].grid(True)
-                        axres[1].set_xlabel("Number of Data")
-                        axres[1].set_ylabel("Conductivity")
-                        st.pyplot(res_value_fig)
-                    st.subheader("Data View") 
-                    AgGrid(data)
-                coordinate_data = data
-                coordinate_data = coordinate_data.dropna(subset=['Latitude'])
-                coordinate_data = coordinate_data.dropna(subset=['Longitude'])
-                for i in range(len(coordinate_data)):
-                    folium.Marker(location=[coordinate_data.iloc[i]['Latitude'], coordinate_data.iloc[i]['Longitude']]).add_to(int_map)
-
+                
         
         
    
