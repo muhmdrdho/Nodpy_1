@@ -209,6 +209,7 @@ if selected=="Interpretation":
     for i in range(number_of_tabs):
         with tabs[i]:
             st.subheader("Data View")
+			cols6 = st.columns(2)
             db = st.checkbox(f"Database {i+1}")
             if db:
                 choose = st.selectbox(f"See whats in our database {i+1}", dwrite["names"])
@@ -339,7 +340,7 @@ if selected=="Interpretation":
         
         
    
-				with cols[0]:
+				
 						
 						#base tile map 
 					
