@@ -343,46 +343,46 @@ if selected=="Interpretation":
 						
 						#base tile map 
 					
-						st.subheader("Digital Map")
-						with cols[1]:
-							st.subheader("Set Box")
-							with st.expander("Set your map", expanded=True):
-								st.subheader("Marker")
-								st.write("For all of digital maps")
-								loc_num_lat1 = st.number_input("Mark your latitude")
-								loc_num_long1 = st.number_input("Mark your longitude")
-								st.subheader("Slider")
-								st.write("Just for geology map")
-								geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
-						Esri_Satellite = folium.TileLayer(
+					st.subheader("Digital Map")
+					with cols[1]:
+						st.subheader("Set Box")
+						with st.expander("Set your map", expanded=True):
+							st.subheader("Marker")
+							st.write("For all of digital maps")
+							loc_num_lat1 = st.number_input("Mark your latitude")
+							loc_num_long1 = st.number_input("Mark your longitude")
+							st.subheader("Slider")
+							st.write("Just for geology map")
+							geology_map_slider1 = st.slider('Set your geology map transparency', 0.0,1.0)
+					Esri_Satellite = folium.TileLayer(
 																				tiles = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
 																				attr = 'Esri',
 																				name = 'Esri Satellite',
 																				overlay = True,
 																				control = True
 																				).add_to(int_map)
-						Google_Satellite_Hybrid =  folium.TileLayer(
+					Google_Satellite_Hybrid =  folium.TileLayer(
 																					tiles = 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
 																					attr = 'Google',
 																					name = 'Google Satellite',
 																					overlay = True,
 																					control = True
 																					).add_to(int_map)
-						Google_Terrain = folium.TileLayer(
+					Google_Terrain = folium.TileLayer(
 																					tiles = 'https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
 																					attr = 'Google',
 																					name = 'Google Terrain',
 																					overlay = True,
 																					control = True
 																					).add_to(int_map)
-						Google_Satellite = folium.TileLayer(
+					Google_Satellite = folium.TileLayer(
 																					tiles = 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
 																					attr = 'Google',
 																					name = 'Google Satellite',
 																					overlay = True,
 																					control = True
 																					).add_to(int_map)
-						Google_Maps = folium.TileLayer(
+					Google_Maps = folium.TileLayer(
 																					tiles = 'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
 																					attr = 'Google',
 																					name = 'Google Maps',
@@ -390,7 +390,7 @@ if selected=="Interpretation":
 																					control = True
 																					).add_to(int_map)
 
-						m = folium.GeoJson(
+					m = folium.GeoJson(
 												name= 'Geology Map',
 												data = state_geo,
 												
@@ -402,27 +402,27 @@ if selected=="Interpretation":
 																				}    
 															).add_to(int_map)
 								#Layer control
-						folium.LayerControl().add_to(int_map)
+					folium.LayerControl().add_to(int_map)
 								
 								#Fullscreeen
-						plugins.Fullscreen().add_to(int_map)
+					plugins.Fullscreen().add_to(int_map)
 
 								#Locate Control
-						plugins.LocateControl().add_to(int_map)
+					plugins.LocateControl().add_to(int_map)
 								#Locate Control
 										
 										
 										#Cursor Postion
-						fmtr = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
-						plugins.MousePosition(position='topright', separator=' | ', prefix="Mouse:",lat_formatter=fmtr, lng_formatter=fmtr).add_to(int_map)
+					fmtr = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
+					plugins.MousePosition(position='topright', separator=' | ', prefix="Mouse:",lat_formatter=fmtr, lng_formatter=fmtr).add_to(int_map)
 										
 										#Add the draw 
-						plugins.Draw(export=True, filename='data.geojson', position='topleft', draw_options=None, edit_options=None).add_to(int_map)
-						folium.GeoJsonTooltip(['SYMBOLS', 'CLASS_LITH'], sticky=True).add_to(m)         
+					plugins.Draw(export=True, filename='data.geojson', position='topleft', draw_options=None, edit_options=None).add_to(int_map)
+					folium.GeoJsonTooltip(['SYMBOLS', 'CLASS_LITH'], sticky=True).add_to(m)         
 										#Measure Control
-						plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
-						folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
-						folium_static(int_map, width=700)
+					plugins.MeasureControl(position='topright', primary_length_unit='meters', secondary_length_unit='miles', primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(int_map)
+					folium.Marker(location=[loc_num_lat1, loc_num_long1]).add_to(int_map)
+					folium_static(int_map, width=700)
 
             up = st.checkbox(f"Upload {i+1}" )
             if up: 
