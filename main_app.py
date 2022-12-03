@@ -1,8 +1,12 @@
 from app.index_lib import *
+from google.cloud import firestore
 from branca.colormap import StepColormap
 from PIL import Image 
 
 st.set_page_config( layout="wide",page_title="Nodpy", initial_sidebar_state="expanded")
+project = Deta(st.secrets["deta_key"])
+# Authenticate to Firestore with the JSON account key.
+
 
 sidebar_setting = st.markdown(
                                 """
