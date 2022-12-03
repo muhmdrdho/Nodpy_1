@@ -217,7 +217,7 @@ if selected=="Interpretation":
                 #setting on your scale bar
                 number_scale_of_bar = st.number_input(f"Set Your Gradient{i+1}", min_value=12, max_value=25)
                 try:
-                    data = pd.read_csv(uploaded_file)
+                    data = pd.read_csv(choose)
                     filein = data  
                     ncolours=number_scale_of_bar
                     colourscheme='Spectral_r' 
