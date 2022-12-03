@@ -209,7 +209,7 @@ if selected=="Interpretation":
     for i in range(number_of_tabs):
         with tabs[i]:
             st.subheader("Data View")
-            db = st.checkbox("Database")
+            db = st.c("Database")
             up = st.checkbox("Upload")
             choose = st.selectbox(f"See what in our database {i+1}", dwrite["names"])   
             uploaded_files = st.file_uploader(f"Set Your Gradient{i+1}", accept_multiple_files=True)
