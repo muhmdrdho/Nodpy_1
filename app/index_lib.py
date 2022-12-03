@@ -15,4 +15,4 @@ from streamlit_option_menu import option_menu
 import branca
 import branca.colormap as cm
 from branca.colormap import LinearColormap
-
+from deta import Deta
